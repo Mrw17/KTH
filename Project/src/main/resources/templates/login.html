@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'index')}" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+</head>
+<body>
+<div class="center">
+    <h1>Login></h1>
+    <form th:action="@{/login}"  method="POST">
+        <legend>Please Login</legend>
+        <div th:if="${param.error}" class="alert alert-error">
+            Invalid username and/or password.
+        </div>
+        <div th:if="${param.logout}" class="alert alert-success">
+            You have been logged out.
+        </div>
+        <div th:if="${param.success}" class="alert alert-success">
+            User added successfully.
+        </div>
+
+
+        <table align="center">
+            <tr>
+                <td>Username:</td>
+                <td><input type ='text' name='username' id="username" ></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type ='password' name='password' id="password" ></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type='submit' name='submit' th:value="#{form.submit}">
+                </td>
+            </tr>
+        </table>
+
+
+    </form>
+</div>
+</body>
+</html>
