@@ -43,7 +43,7 @@ public class HeartRateActivity extends AppCompatActivity {
     }
 
     /**
-     * Send user back to MainActivity
+     * Closes the activity
      */
     private void backBtnPressed() {
         finish();

@@ -50,8 +50,8 @@ public class MainActivity extends Activity {
     }
 
     private void sendUserToGPSActivity() {
-        //Intent intent = new Intent(this, GPSActivity.class);
-        //this.startActivity(intent);
+        Intent intent = new Intent(this, GPSActivity.class);
+        this.startActivity(intent);
     }
 
     private void sendUserToPressureActivity() {

@@ -43,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void gpsBtnPressed() {
-        //Intent intent = new Intent(this, GPSActivity.class);
-        //this.startActivity(intent);
+        Intent intent = new Intent(this, GPSActivity.class);
+        this.startActivity(intent);
     }
 
     private void pressureBtnPressed() {

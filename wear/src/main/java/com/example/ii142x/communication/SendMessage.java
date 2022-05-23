@@ -1,4 +1,4 @@
-package communication;
+package com.example.ii142x.communication;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,8 +7,6 @@ import com.google.android.gms.tasks.Tasks;
 import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.Wearable;
 
-import java.io.IOError;
-import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -33,7 +31,6 @@ public class SendMessage extends Thread{
             //Block on a task and get the result synchronously//
             List<Node> nodes = Tasks.await(nodeListTask);
             for (Node node : nodes) {
-
                 // Task for sending the message
                 Task<Integer> sendMessageTask =
                         Wearable.getMessageClient(context).sendMessage(node.getId(), path, message.getBytes());

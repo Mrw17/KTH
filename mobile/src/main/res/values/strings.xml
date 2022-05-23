@@ -18,8 +18,12 @@
     <string name="btnMainPressure">Pressure</string>
 
     <!-- HeartRateActivity -->
-    <string name="textviewHeartRateHeartRate">Heart rate: </string>
+    <string name="textviewHeartRateHeartRate">Heart rate:</string>
     <string name="btnHeartRateAccelerometer">Accelerometer</string>
 
+    <!-- GPSActivity -->
+    <string name="gps">GPS</string>
+    <string name="gpsLatitude">Latitude</string>
+    <string name="gpsLongitude">Longitude</string>
 
 </resources>

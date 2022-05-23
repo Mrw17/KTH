@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import android.os.Bundle;
 import com.example.ii142x.communication.MessagePath;
-import communication.SendMessage;
+import com.example.ii142x.communication.SendMessage;
 import pub.devrel.easypermissions.EasyPermissions;
 
 import java.util.List;

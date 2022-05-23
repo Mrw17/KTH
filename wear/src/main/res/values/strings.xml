@@ -22,4 +22,10 @@
     <string name="btnStopHeartRate">Stop reading heart rate</string>
     <string name="permissions_ask_for_heart_rate">Need permission to body sensors to be able ro record heart rate</string>
 
+    <!-- activity_gps -->
+    <string name="title_activity_gps">GPS</string>
+    <string name="btnGPSStartReadGPS">Start read GPS</string>
+    <string name="btnGPSStopReadGPS">Stop read GPS</string>
+    <string name="askForGPSPermissions">Need permission to gps to be able to get coordinates</string>
+
 </resources>
