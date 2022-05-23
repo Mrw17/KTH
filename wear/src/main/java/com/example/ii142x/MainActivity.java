@@ -55,8 +55,8 @@ public class MainActivity extends Activity {
     }
 
     private void sendUserToPressureActivity() {
-       // Intent intent = new Intent(this, PressureActivity.class);
-      //  this.startActivity(intent);
+        Intent intent = new Intent(this, PressureActivity.class);
+        this.startActivity(intent);
     }
 
     private void sendUserToAccelerometerActivity() {

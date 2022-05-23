@@ -9,15 +9,21 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
+import androidx.annotation.NonNull;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import com.example.ii142x.DTO.AccelerometerDTO;
+import com.google.android.gms.wearable.MessageClient;
+import com.google.android.gms.wearable.MessageEvent;
+import com.google.android.gms.wearable.Wearable;
 import communication.MessageBundles;
+import communication.MessagePath;
 
 /**
  * Class that is responsible for GPS-coordinates
  * It will receive GPS-coordinate from a another node and
  * display it to the user
  */
-public class GPSActivity extends Activity {
+public class GPSActivity extends Activity  implements MessageClient.OnMessageReceivedListener{
     TextView textViewLongitude;
     TextView textViewLatitude;
     Button btnBack;
@@ -38,7 +44,8 @@ public class GPSActivity extends Activity {
     public void onResume() {
         super.onResume();
         setUpGUI();
-        setUpListeners();    }
+        setUpListeners();
+    }
 
     /**
      * When user pause the application it will
@@ -64,15 +71,18 @@ public class GPSActivity extends Activity {
      * Register listener for a message receiver
      */
     private void setUpListeners(){
-        LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
-                new IntentFilter(Intent.ACTION_SEND));
+       // LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
+         //       new IntentFilter(Intent.ACTION_SEND));
+        Wearable.getMessageClient(this).addListener(this);
+
     }
 
     /**
      * Removes listeners
      */
     private void removeListeners(){
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
+       // LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
+        Wearable.getMessageClient(this).removeListener(this);
     }
 
     /**
@@ -117,9 +127,11 @@ public class GPSActivity extends Activity {
         public void onReceive(Context context, Intent intent) {
             //Gets the message
             Bundle bundle = intent.getExtras();
-            String onMessageReceived = (String) bundle.get(MessageBundles.GPS);
-            if(onMessageReceived != null)
-                newMessageReceived(onMessageReceived);
+           // String onMessageReceived = (String) bundle.get(MessageBundles.GPS);
+            AccelerometerDTO test = (AccelerometerDTO) bundle.get(MessageBundles.GPS);
+
+            if(test != null)
+                newMessageReceived(test.getX() + " " + test.getY() + " " + test.getZ());
         }
     };
 
@@ -128,5 +140,15 @@ public class GPSActivity extends Activity {
      */
     private void backBtnPressed() {
         finish();
+    }
+
+    @Override
+    public void onMessageReceived(@NonNull MessageEvent messageEvent) {
+        if(messageEvent.getPath().equals(MessagePath.GPS)){
+            byte[] bytes = messageEvent.getData();
+            String output = new String(bytes);
+            newMessageReceived(output);
+            //update.setText(output);
+        }
     }
 }

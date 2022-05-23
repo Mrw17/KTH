@@ -15,15 +15,22 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+import com.example.ii142x.DTO.AccelerometerDTO;
 import com.example.ii142x.communication.MessagePath;
 import com.example.ii142x.communication.SendMessage;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
 import com.google.android.gms.wearable.DataClient;
 import com.google.android.gms.wearable.DataEventBuffer;
+import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.Wearable;
 import org.jetbrains.annotations.NotNull;
 import pub.devrel.easypermissions.EasyPermissions;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class GPSActivity extends Activity implements LocationListener, EasyPermissions.PermissionCallbacks {
 
@@ -198,4 +205,44 @@ public class GPSActivity extends Activity implements LocationListener, EasyPermi
     private boolean hasLocationPermissions() {
         return (EasyPermissions.hasPermissions(this, LOCATION_PERMISSIONS));
     }
+
+    private void sendGpsToPhone() {
+        new Thread(() -> {
+            try{
+                Collection<String> nodes = getNodes();
+                AccelerometerDTO accelerometerDTO = new AccelerometerDTO(1,2,3);
+                Wearable.getMessageClient(getBaseContext()).sendMessage(nodes.iterator().next(), MessagePath.PRESSURE, accelerometerDTO.getBytes());
+            }
+            catch (Exception e){
+                showToastToUser("Could not send message: " + e);
+            }
+
+        }).start();
+    }
+
+    private Collection<String> getNodes() {
+        HashSet<String> results = new HashSet<>();
+
+        Task<List<Node>> nodeListTask =
+                Wearable.getNodeClient(getApplicationContext()).getConnectedNodes();
+
+        try {
+            // Block on a task and get the result synchronously (because this is on a background
+            // thread).
+            List<Node> nodes = Tasks.await(nodeListTask);
+
+            for (Node node : nodes) {
+                results.add(node.getId());
+            }
+
+        } catch (ExecutionException exception) {
+            System.out.println("Task failed: " + exception);
+
+        } catch (InterruptedException exception) {
+            System.out.println("Interrupt occurred: " + exception);
+        }
+
+        return results;
+    }
+
 }

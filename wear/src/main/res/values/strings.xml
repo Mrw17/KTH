@@ -20,12 +20,18 @@
     <string name="title_activity_heart_rate">Heart rate</string>
     <string name="btnStartHeartRate">Start reading Heart rate</string>
     <string name="btnStopHeartRate">Stop reading heart rate</string>
-    <string name="permissions_ask_for_heart_rate">Need permission to body sensors to be able ro record heart rate</string>
+    <string name="permissions_ask_for_heart_rate">Need permission to body sensors to be able ro record heart rate
+    </string>
 
     <!-- activity_gps -->
     <string name="title_activity_gps">GPS</string>
     <string name="btnGPSStartReadGPS">Start read GPS</string>
     <string name="btnGPSStopReadGPS">Stop read GPS</string>
     <string name="askForGPSPermissions">Need permission to gps to be able to get coordinates</string>
+
+    <!-- pressureActivity -->
+    <string name="btnPressureStart">Start reading pressure</string>
+    <string name="btnPressureStop">Stop reading pressure</string>
+    <string name="pressure">"Current pressure: "</string>
 
 </resources>

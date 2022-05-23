@@ -26,4 +26,8 @@
     <string name="gpsLatitude">Latitude</string>
     <string name="gpsLongitude">Longitude</string>
 
+    <!-- PressureActivity -->
+    <string name="pressure">Pressure</string>
+
+
 </resources>

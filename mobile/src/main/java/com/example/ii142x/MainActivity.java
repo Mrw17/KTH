@@ -48,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void pressureBtnPressed() {
-        //Intent intent = new Intent(this, PressureActivity.class);
-        //this.startActivity(intent);
+        Intent intent = new Intent(this, PressureActivity.class);
+        this.startActivity(intent);
     }
 
     private void accelerometerBtnPressed() {
