@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         btnPhoto = findViewById(R.id.btnMainPhoto);
         btnPhoto.setOnClickListener(v-> photoBtnPressed());
     }
+
     private void heartBeatBtnPressed() {
         Intent intent = new Intent(this, HeartRateActivity.class);
         this.startActivity(intent);
@@ -58,8 +59,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void photoBtnPressed() {
-       // Intent intent = new Intent(this, PhotoActivity.class);
-       // this.startActivity(intent);
+        Intent intent = new Intent(this, PhotoActivity.class);
+        this.startActivity(intent);
     }
 
 

@@ -16,6 +16,9 @@
             android:supportsRtl="true"
             android:theme="@android:style/Theme.DeviceDefault">
         <activity
+                android:name=".PhotoActivity"
+                android:exported="true"/>
+        <activity
                 android:name=".PressureActivity"
                 android:exported="true"/>
 
@@ -34,7 +37,6 @@
                         android:host="*"
                         android:pathPrefix="/gps"
                         android:scheme="wear"/>
-
                 <data
                         android:host="*"
                         android:pathPrefix="/pressure"

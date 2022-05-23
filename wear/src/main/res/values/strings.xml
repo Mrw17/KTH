@@ -33,5 +33,7 @@
     <string name="btnPressureStart">Start reading pressure</string>
     <string name="btnPressureStop">Stop reading pressure</string>
     <string name="pressure">"Current pressure: "</string>
+    <string name="reset">reset</string>
+    <string name="btnImageSend">Send image</string>
 
 </resources>

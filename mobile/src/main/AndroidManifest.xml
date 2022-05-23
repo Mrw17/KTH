@@ -10,6 +10,9 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.II142x">
         <activity
+                android:name=".PhotoActivity"
+                android:exported="true"/>
+        <activity
                 android:name=".PressureActivity"
                 android:exported="true"/>
         <activity

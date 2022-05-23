@@ -28,6 +28,8 @@
 
     <!-- PressureActivity -->
     <string name="pressure">Pressure</string>
+    <string name="btnSendPhoto">Send photo</string>
+    <string name="photoReset">Reset</string>
 
 
 </resources>

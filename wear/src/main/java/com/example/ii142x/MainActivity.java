@@ -65,8 +65,8 @@ public class MainActivity extends Activity {
     }
 
     private void sendUserToPhotoActivity() {
-      //  Intent intent = new Intent(this, PhotoActivity.class);
-     //   this.startActivity(intent);
+        Intent intent = new Intent(this, PhotoActivity.class);
+        this.startActivity(intent);
     }
 
 }
