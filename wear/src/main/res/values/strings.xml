@@ -14,4 +14,12 @@
     <string name="btnMainGPS">GPS</string>
     <string name="btnMainPressure">Pressure</string>
     <string name="btnMainAccelerator">Accelerator</string>
-    <string name="btnMainPhoto">Photo</string></resources>
+    <string name="btnMainPhoto">Photo</string>
+
+    <!-- activity_heart_rate -->
+    <string name="title_activity_heart_rate">Heart rate</string>
+    <string name="btnStartHeartRate">Start reading Heart rate</string>
+    <string name="btnStopHeartRate">Stop reading heart rate</string>
+    <string name="permissions_ask_for_heart_rate">Need permission to body sensors to be able ro record heart rate</string>
+
+</resources>

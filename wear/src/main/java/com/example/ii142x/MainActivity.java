@@ -45,8 +45,8 @@ public class MainActivity extends Activity {
     }
 
     private void sendUserToHeartRateActivity() {
-        //Intent intent = new Intent(this, HeartRateActivity.class);
-        //this.startActivity(intent);
+        Intent intent = new Intent(this, HeartRateActivity.class);
+        this.startActivity(intent);
     }
 
     private void sendUserToGPSActivity() {
