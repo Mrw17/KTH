@@ -10,10 +10,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.example.ii142x.communication.MessagePath;
-import com.example.ii142x.communication.SendMessage;
+import communication.SendMessage;
 import pub.devrel.easypermissions.EasyPermissions;
 
 import java.util.List;
@@ -89,7 +88,7 @@ public class HeartRateActivity extends Activity implements SensorEventListener, 
     }
 
     /**
-     * It will start to read heartbeat
+     * It will start to read heart rate
      * by adding a listener on BODY_SENSOR
      * with normal delay
      * if it has permissions to do it
@@ -174,18 +173,15 @@ public class HeartRateActivity extends Activity implements SensorEventListener, 
 
 
     private void sendToMobile(float value){
-        new Thread() {
-            public void run() {
-                try{
-                    SendMessage sendMessage = new SendMessage(MessagePath.HEART_RATE, Float.toString(value), getParent());
-                    sendMessage.run();
-                }
-                catch (Exception e){
-                    showToastToUser("Could not send message");
-                    e.printStackTrace();
-                }
-            }
-        };
+
+        try{
+            SendMessage sendMessage = new SendMessage(MessagePath.HEART_RATE, Float.toString(value), this);
+            sendMessage.start();
+        }
+        catch (Exception e){
+            showToastToUser("Could not send message");
+            e.printStackTrace();
+        }
     }
 
     private void requestBodySensorPermission() {

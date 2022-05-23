@@ -1,4 +1,4 @@
-package com.example.ii142x.communication;
+package communication;
 
 public class MessagePath {
     private MessagePath(){}
