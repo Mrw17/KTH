@@ -30,7 +30,7 @@ import java.util.List;
  */
 public class AccelerometerActivity extends Activity implements SensorEventListener, EasyPermissions.PermissionCallbacks {
     private final int REQUEST_BODY_SENSOR = 2;
-    SensorManager mSensorManager;
+    SensorManager sensorManager;
     private TextView textViewAccelerometer_1;
     private TextView textViewAccelerometer_2;
     private TextView textViewAccelerometer_3;
@@ -48,9 +48,10 @@ public class AccelerometerActivity extends Activity implements SensorEventListen
         super.onCreate(savedInstanceState);
         ActivityAccelerometerBinding binding = ActivityAccelerometerBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        mSensorManager = (SensorManager) getBaseContext().getSystemService(SENSOR_SERVICE);
+        sensorManager = (SensorManager) getBaseContext().getSystemService(SENSOR_SERVICE);
         setUpGUI();
     }
+
 
     /**
      * When user pause the application it will
@@ -59,7 +60,7 @@ public class AccelerometerActivity extends Activity implements SensorEventListen
     @Override
     public void onPause() {
         super.onPause();
-        mSensorManager.unregisterListener(this);
+        sensorManager.unregisterListener(this);
     }
 
     /**
@@ -150,7 +151,7 @@ public class AccelerometerActivity extends Activity implements SensorEventListen
      * Stop reading accelerator
      */
     private void stopReadingAccelerator() {
-        mSensorManager.unregisterListener(this);
+        sensorManager.unregisterListener(this);
     }
 
     /**
@@ -158,8 +159,8 @@ public class AccelerometerActivity extends Activity implements SensorEventListen
      */
     private void startReadingAccelerator() {
         if (hasAccelerometerPermissions()) {
-            Sensor accelerometerSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-            mSensorManager.registerListener(this,
+            Sensor accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+            sensorManager.registerListener(this,
                     accelerometerSensor,
                     SensorManager.SENSOR_DELAY_NORMAL);
         }
@@ -197,7 +198,6 @@ public class AccelerometerActivity extends Activity implements SensorEventListen
                                            @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
         // EasyPermissions handles the request result.
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
     }

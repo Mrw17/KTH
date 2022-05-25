@@ -28,7 +28,7 @@ public class PressureActivity extends Activity implements
 
     private Button btnReadPressure;
     private TextView textViewCurrPressure;
-    SensorManager mSensorManager;
+    SensorManager sensorManager;
     double currentPressure = 0;
 
     private static final int REQUEST_BODY_SENSOR = 3;
@@ -39,7 +39,7 @@ public class PressureActivity extends Activity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pressure);
-        mSensorManager = (SensorManager) getBaseContext().getSystemService(SENSOR_SERVICE);
+        sensorManager = (SensorManager) getBaseContext().getSystemService(SENSOR_SERVICE);
         setUpGUI();
     }
 
@@ -81,7 +81,7 @@ public class PressureActivity extends Activity implements
      * Removes listeners
      */
     private void removeListeners(){
-        mSensorManager.unregisterListener(this);
+        sensorManager.unregisterListener(this);
     }
 
     /**
@@ -107,8 +107,8 @@ public class PressureActivity extends Activity implements
      * removing listener
      */
     private void stopReadingPressure() {
-        if(mSensorManager != null)
-            mSensorManager.unregisterListener(this);
+        if(sensorManager != null)
+            sensorManager.unregisterListener(this);
     }
 
     /**
@@ -117,8 +117,8 @@ public class PressureActivity extends Activity implements
      */
     private void startReadingPressure() {
         if (hasPressurePermissions()) {
-            Sensor pressureSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
-            mSensorManager.registerListener(this,
+            Sensor pressureSensor = sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
+            sensorManager.registerListener(this,
                     pressureSensor,
                     SensorManager.SENSOR_DELAY_NORMAL);
         }
