@@ -5,6 +5,15 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
+/**
+ * MainActivity that will show a main menu for user.
+ * User can choose between.
+ * read heart rate and send it to mobile.
+ * read GPS and send it to mobile.
+ * read pressure and send it to mobile.
+ * read accelerometer and send it to mobile.
+ * send/receive a photo form mobile.
+ */
 public class MainActivity extends AppCompatActivity {
 
     Button btnAccelerometer;
@@ -21,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
         fixGUI();
     }
 
+    /**
+     * Default GUI and listeners on buttons
+     */
     private void fixGUI() {
         btnAccelerometer = findViewById(R.id.btnMainAccelerometer);
         btnAccelerometer.setOnClickListener(v-> accelerometerBtnPressed());
@@ -54,14 +66,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void accelerometerBtnPressed() {
-        //Intent intent = new Intent(this, AccelerometerActivity.class);
-        //this.startActivity(intent);
+        Intent intent = new Intent(this, AccelerometerActivity.class);
+        this.startActivity(intent);
     }
 
     private void photoBtnPressed() {
         Intent intent = new Intent(this, PhotoActivity.class);
         this.startActivity(intent);
     }
-
-
 }

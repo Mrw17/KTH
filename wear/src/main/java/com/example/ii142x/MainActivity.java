@@ -4,9 +4,17 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.TextView;
 import com.example.ii142x.databinding.ActivityMainBinding;
 
+/**
+ * MainActivity that will show a main menu for user.
+ * User can choose between.
+ * read heart rate and send it to mobile.
+ * read GPS and send it to mobile.
+ * read pressure and send it to mobile.
+ * read accelerometer and send it to mobile.
+ * send/receive a photo form mobile.
+ */
 public class MainActivity extends Activity {
 
     Button btnHeartRate;
@@ -14,18 +22,20 @@ public class MainActivity extends Activity {
     Button btnPressure;
     Button btnAccelerometer;
     Button btnPhoto;
-    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         setUpGUI();
     }
 
+    /**
+     * Default GUI
+     */
     private void setUpGUI(){
         btnHeartRate = findViewById(R.id.btnGetHeartRate);
         btnHeartRate.setOnClickListener(v-> sendUserToHeartRateActivity());
@@ -60,8 +70,8 @@ public class MainActivity extends Activity {
     }
 
     private void sendUserToAccelerometerActivity() {
-       // Intent intent = new Intent(this, AccelerometerActivity.class);
-      //  this.startActivity(intent);
+        Intent intent = new Intent(this, AccelerometerActivity.class);
+        this.startActivity(intent);
     }
 
     private void sendUserToPhotoActivity() {

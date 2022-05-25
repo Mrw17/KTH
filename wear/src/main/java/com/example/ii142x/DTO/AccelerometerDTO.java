@@ -1,24 +1,23 @@
 package com.example.ii142x.DTO;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
 
+/**
+ * Activity that are responsible for holding Accelerometer-data
+ * it will be used for sending data between mobile and smartwatch
+ */
 public class AccelerometerDTO implements Serializable {
-    double x;
-    double y;
-    double z;
+    float x;
+    float y;
+    float z;
 
-    public AccelerometerDTO(double x, double y, double z){
+    public AccelerometerDTO(float x, float y, float z){
         this.x = x;
         this.y = y;
         this.z = z ;
     }
 
-    public AccelerometerDTO() {
-
-    }
+    public AccelerometerDTO() {}
 
     public byte[] getBytes() throws IOException {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -28,27 +27,34 @@ public class AccelerometerDTO implements Serializable {
         return bos.toByteArray();
     }
 
-    public double getX() {
+    public static AccelerometerDTO deserialize(byte[] data) throws IOException, ClassNotFoundException {
+        ByteArrayInputStream in = new ByteArrayInputStream(data);
+        ObjectInputStream is = new ObjectInputStream(in);
+
+        return (AccelerometerDTO) is.readObject();
+    }
+
+    public float getX() {
         return x;
     }
 
-    public void setX(double x) {
+    public void setX(float x) {
         this.x = x;
     }
 
-    public double getY() {
+    public float getY() {
         return y;
     }
 
-    public void setY(double y) {
+    public void setY(float y) {
         this.y = y;
     }
 
-    public double getZ() {
+    public float getZ() {
         return z;
     }
 
-    public void setZ(double z) {
+    public void setZ(float z) {
         this.z = z;
     }
 

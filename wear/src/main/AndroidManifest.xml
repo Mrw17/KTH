@@ -16,6 +16,9 @@
             android:supportsRtl="true"
             android:theme="@android:style/Theme.DeviceDefault">
         <activity
+                android:name=".AccelerometerActivity"
+                android:exported="true"/>
+        <activity
                 android:name=".PhotoActivity"
                 android:exported="true"/>
         <activity

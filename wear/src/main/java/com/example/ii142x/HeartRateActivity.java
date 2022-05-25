@@ -21,7 +21,6 @@ public class HeartRateActivity extends Activity implements SensorEventListener, 
 
     private TextView textViewHeartRate;
     private Button btnHeartRate;
-    private Button btnBackToMainActivity;
     SensorManager sensorManager;
     Sensor heartRateSensor;
     private static final String[] BODY_SENSOR = {Manifest.permission.BODY_SENSORS};
@@ -63,7 +62,7 @@ public class HeartRateActivity extends Activity implements SensorEventListener, 
         btnHeartRate = findViewById(R.id.btnStartHeartRate);
         btnHeartRate.setOnClickListener(v-> readHeartRateBtnPressed());
 
-        btnBackToMainActivity = findViewById(R.id.btnBackMainActivity);
+        Button btnBackToMainActivity = findViewById(R.id.btnBackMainActivity);
         btnBackToMainActivity.setOnClickListener(v-> sendUserToMainActivity());
 
         textViewHeartRate = findViewById(R.id.textViewHeartRate);
@@ -97,7 +96,6 @@ public class HeartRateActivity extends Activity implements SensorEventListener, 
         try{
             if (hasHeartRatePermissions()) {
                 registerHeartRateListener();
-
             }
         }
         catch (Exception e){
@@ -191,7 +189,7 @@ public class HeartRateActivity extends Activity implements SensorEventListener, 
         else {
             this.runOnUiThread(() -> {
                 try{
-                    askForPermissions(BODY_SENSOR);
+                    askForPermissions();
                 }
                 catch (Exception e){
                     e.printStackTrace();
@@ -210,14 +208,13 @@ public class HeartRateActivity extends Activity implements SensorEventListener, 
 
     /**
      * will ask for permissions
-     * @param permissions to be asked for
      */
-    private void askForPermissions(String[] permissions){
+    private void askForPermissions(){
         EasyPermissions.requestPermissions(
                 this,
                 getString(R.string.permissions_ask_for_heart_rate),
                 REQUEST_BODY_SENSOR,
-                permissions);
+                HeartRateActivity.BODY_SENSOR);
     }
 
     /**
@@ -276,5 +273,4 @@ public class HeartRateActivity extends Activity implements SensorEventListener, 
             }
         });
     }
-
 }

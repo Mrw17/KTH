@@ -2,31 +2,27 @@ package com.example.ii142x;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import com.example.ii142x.DTO.AccelerometerDTO;
+import androidx.annotation.UiThread;
+import com.example.ii142x.DTO.GpsDTO;
 import com.google.android.gms.wearable.MessageClient;
 import com.google.android.gms.wearable.MessageEvent;
 import com.google.android.gms.wearable.Wearable;
-import communication.MessageBundles;
 import communication.MessagePath;
 
 /**
  * Class that is responsible for GPS-coordinates
- * It will receive GPS-coordinate from a another node and
+ * It will receive GPS-coordinate from another node and
  * display it to the user
  */
 public class GPSActivity extends Activity  implements MessageClient.OnMessageReceivedListener{
     TextView textViewLongitude;
     TextView textViewLatitude;
     Button btnBack;
+    int coordinateDecimals = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,69 +67,45 @@ public class GPSActivity extends Activity  implements MessageClient.OnMessageRec
      * Register listener for a message receiver
      */
     private void setUpListeners(){
-       // LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
-         //       new IntentFilter(Intent.ACTION_SEND));
         Wearable.getMessageClient(this).addListener(this);
-
     }
 
     /**
      * Removes listeners
      */
     private void removeListeners(){
-       // LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
         Wearable.getMessageClient(this).removeListener(this);
     }
 
     /**
      * When a new message is received it will update GUI
-     * @param newCoordinates new coordinates
+     * @param gpsDTO new coordinates
      */
     @SuppressLint("SetTextI18n")
-    private void newMessageReceived(String newCoordinates){
-        String latitude = getLatitude(newCoordinates);
-        String longitude = getLongitude(newCoordinates);
+    private void newMessageReceived(GpsDTO gpsDTO){
+        String latitude = Double.toString(gpsDTO.getLatitude());
+        latitude =  latitude.substring(0, Math.min(latitude.length(), 3 + coordinateDecimals));
 
-        textViewLongitude.setText(latitude);
-        textViewLatitude.setText(longitude);
+        String longitude = Double.toString(gpsDTO.getLongitude());
+        longitude =  longitude.substring(0, Math.min(longitude.length(), 3 + coordinateDecimals));
+
+        updateGUIWithNewCoordinates(latitude, longitude);
     }
 
-    /**
-     * Will extract longitude from coordinate string
-     * @param newCoordinates new coordinates
-     * @return longitude part of coordinates
-     */
-    private String getLongitude(String newCoordinates) {
-        String[] parts = newCoordinates.split(",");
-        return parts[0];
+    @UiThread
+    private void updateGUIWithNewCoordinates(String latitude, String longitude) {
+        this.runOnUiThread(() -> {
+            try{
+                textViewLatitude.setText(latitude);
+                textViewLongitude.setText(longitude);
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        });
+
     }
 
-    /**
-     * Will extract latitude from coordinate string
-     * @param newCoordinates new coordinates
-     * @return latitude part of coordinates
-     */
-    private String getLatitude(String newCoordinates) {
-        String[] parts = newCoordinates.split(",");
-        return parts[1];
-    }
-
-    /**
-     * Receiver that will listen on new messages
-     * and update the gui with new data
-     */
-    private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            //Gets the message
-            Bundle bundle = intent.getExtras();
-           // String onMessageReceived = (String) bundle.get(MessageBundles.GPS);
-            AccelerometerDTO test = (AccelerometerDTO) bundle.get(MessageBundles.GPS);
-
-            if(test != null)
-                newMessageReceived(test.getX() + " " + test.getY() + " " + test.getZ());
-        }
-    };
 
     /**
      * Closes the activity
@@ -146,9 +118,14 @@ public class GPSActivity extends Activity  implements MessageClient.OnMessageRec
     public void onMessageReceived(@NonNull MessageEvent messageEvent) {
         if(messageEvent.getPath().equals(MessagePath.GPS)){
             byte[] bytes = messageEvent.getData();
-            String output = new String(bytes);
-            newMessageReceived(output);
-            //update.setText(output);
+            try{
+                new GpsDTO();
+                GpsDTO gpsDTO = GpsDTO.deserialize(bytes);
+                newMessageReceived(gpsDTO);
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }
 }

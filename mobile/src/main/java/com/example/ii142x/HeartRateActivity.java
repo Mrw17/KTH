@@ -4,17 +4,25 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import communication.MessageBundles;
 
+/**
+ * Class that is responsible for heart rates
+ * It will receive heart rates from another node and
+ * display it to the user
+ */
 public class HeartRateActivity extends AppCompatActivity {
 
-    private Button btnBack;
     private TextView textViewCurrHeartBeat;
 
+    /**
+     * On start up it will set up default gui and listeners
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +36,7 @@ public class HeartRateActivity extends AppCompatActivity {
      * Set up default ui
      */
     private void setUpGUI(){
-        btnBack = findViewById(R.id.btnBackMainActivity);
+        Button btnBack = findViewById(R.id.btnBackMainActivity);
         btnBack.setOnClickListener(v-> backBtnPressed());
 
         textViewCurrHeartBeat = findViewById(R.id.textViewHeartRateCurrentValue);
@@ -66,9 +74,14 @@ public class HeartRateActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             //Gets the message
             Bundle bundle = intent.getExtras();
-            String onMessageReceived = (String) bundle.get("heartRate");
-            if(onMessageReceived != null)
-                newMessageReceived(onMessageReceived);
+            try {
+                String onMessageReceived = (String) bundle.get(MessageBundles.HEART_RATE);
+                if (onMessageReceived != null)
+                    newMessageReceived(onMessageReceived);
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
         }
     };
 }

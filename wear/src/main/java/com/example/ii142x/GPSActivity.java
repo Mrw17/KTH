@@ -15,16 +15,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
-import com.example.ii142x.DTO.AccelerometerDTO;
+import com.example.ii142x.DTO.GpsDTO;
 import com.example.ii142x.communication.MessagePath;
-import com.example.ii142x.communication.SendMessage;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
-import com.google.android.gms.wearable.DataClient;
-import com.google.android.gms.wearable.DataEventBuffer;
 import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.Wearable;
-import org.jetbrains.annotations.NotNull;
 import pub.devrel.easypermissions.EasyPermissions;
 
 import java.util.Collection;
@@ -32,79 +28,71 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * Class that will read GPS and sent it to mobile
+ */
 public class GPSActivity extends Activity implements LocationListener, EasyPermissions.PermissionCallbacks {
 
-    private Button btnGps;
     private TextView textViewLatitude;
     private TextView textViewLongitude;
-    private Button btnBack;
     private Location location;
     private LocationManager locationManager;
     private String provider;
     int coordinateDecimals = 5;
-
     private static final int REQUEST_LOCATION = 3;
-
 
     private static final String[] LOCATION_PERMISSIONS =
             {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION};
 
 
+    /**
+     * Set up default GUI and get locationManager from system
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gps);
         setUpGUI();
+
+        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
     }
 
-
+    /**
+     * Default GUI and button listeners
+     */
     private void setUpGUI() {
-        btnGps = findViewById(R.id.btnGpsGetGPS);
+        Button btnGps = findViewById(R.id.btnGpsGetGPS);
         btnGps.setOnClickListener(v -> getCurrentGPS());
 
-        btnBack = findViewById(R.id.btnBackMainActivity);
+        Button btnBack = findViewById(R.id.btnBackMainActivity);
         btnBack.setOnClickListener(v -> sendUserToMainActivity());
 
         textViewLatitude = findViewById(R.id.textViewGpsLatitude);
         textViewLongitude = findViewById(R.id.textViewGpsLongitude);
     }
 
+    /**
+     * Gets current GPS
+     */
     @SuppressLint("MissingPermission")
     private void getCurrentGPS() {
-        new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            if (hasLocationPermissions()) {
-                locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-                Criteria criteria = new Criteria();
-                criteria.setAccuracy(Criteria.ACCURACY_COARSE);
+        if (hasLocationPermissions()) {
+            Criteria criteria = new Criteria();
+            criteria.setAccuracy(Criteria.ACCURACY_COARSE);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, this);
+            provider = locationManager.getBestProvider(criteria, false);
+            location = locationManager.getLastKnownLocation(provider);
 
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, this);
-                provider = locationManager.getBestProvider(criteria, false);
-                location = locationManager.getLastKnownLocation(provider);
+            if (location != null)
+                onLocationChanged(location);
 
-                if (location != null) {
-                    onLocationChanged(location);
-                }
-
-            } else {
+            } else
                 askForPermissions();
-            }
-        }, 1000);
-        new Thread(() -> {
-        });
     }
 
-    private void sendToMobile(){
-
-        try{
-            SendMessage sendMessage = new SendMessage(MessagePath.GPS, getLatitude(location) + ", " + getLongitude(location), this);
-            sendMessage.start();
-        }
-        catch (Exception e){
-            showToastToUser("Could not send message");
-            e.printStackTrace();
-        }
-    }
-
+    /**
+     * Ask the user for permission to location
+     */
     private void askForPermissions() {
         EasyPermissions.requestPermissions(
                 this,
@@ -137,6 +125,9 @@ public class GPSActivity extends Activity implements LocationListener, EasyPermi
     }
 
 
+    /**
+     * Updates GUI with new coordinates
+     */
     private void updateGUI() {
         if (location != null) {
             textViewLongitude.setText(getLongitude(location));
@@ -144,26 +135,38 @@ public class GPSActivity extends Activity implements LocationListener, EasyPermi
         }
     }
 
+    /**
+     * Gets longitude and format it
+     * @param location that longitude will be extracted from
+     * @return longitude coordinates
+     */
     private String getLongitude(Location location) {
         String longitude = Double.toString(location.getLongitude());
-
         String[] temp = longitude.split("\\.");
         String a = temp[1];
-
         return temp[0] + "." + a.substring(0, Math.min(a.length(), coordinateDecimals));
-        //return longitude.substring(0, Math.min(longitude.length(), 3 + coordinateDecimals));
     }
 
+    /**
+     * Gets latitude and format it
+     * @param location that latitude will be extracted from
+     * @return latitude coordinates
+     */
     private String getLatitude(Location location) {
         String latitude = Double.toString(location.getLatitude());
         return latitude.substring(0, Math.min(latitude.length(), 3 + coordinateDecimals));
     }
 
+    /**
+     * When sensor sends location changed it will
+     * update GUI and send it mobile
+     * @param location new location
+     */
     @Override
     public void onLocationChanged(@NonNull Location location) {
         this.location = location;
         updateGUI();
-        sendToMobile();
+        sendGpsToPhone(new GpsDTO(location.getLatitude(), location.getLongitude()));
     }
 
     /**
@@ -190,7 +193,12 @@ public class GPSActivity extends Activity implements LocationListener, EasyPermi
         showToastToUser("Need permissions to read GPS");
     }
 
-
+    /**
+     * Reult on permisson request
+     * @param requestCode The request code for tracking
+     * @param permissions The requested permissions. Never null.
+     * @param grantResults The grant results for the corresponding permissions
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions,
@@ -202,24 +210,34 @@ public class GPSActivity extends Activity implements LocationListener, EasyPermi
 
     }
 
+    /**
+     *
+     * @return status on permissions
+     */
     private boolean hasLocationPermissions() {
         return (EasyPermissions.hasPermissions(this, LOCATION_PERMISSIONS));
     }
 
-    private void sendGpsToPhone() {
+    /**
+     * Sends GPS to the phone through MessageClient
+     * @param gpsDTO to be sent
+     */
+    private void sendGpsToPhone(GpsDTO gpsDTO) {
         new Thread(() -> {
-            try{
+            try {
                 Collection<String> nodes = getNodes();
-                AccelerometerDTO accelerometerDTO = new AccelerometerDTO(1,2,3);
-                Wearable.getMessageClient(getBaseContext()).sendMessage(nodes.iterator().next(), MessagePath.PRESSURE, accelerometerDTO.getBytes());
-            }
-            catch (Exception e){
-                showToastToUser("Could not send message: " + e);
+                Wearable.getMessageClient(getBaseContext()).sendMessage(nodes.iterator().next(), MessagePath.GPS, gpsDTO.getBytes());
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
         }).start();
     }
 
+    /**
+     *
+     * @return all nodes that are available
+     */
     private Collection<String> getNodes() {
         HashSet<String> results = new HashSet<>();
 
@@ -227,22 +245,13 @@ public class GPSActivity extends Activity implements LocationListener, EasyPermi
                 Wearable.getNodeClient(getApplicationContext()).getConnectedNodes();
 
         try {
-            // Block on a task and get the result synchronously (because this is on a background
-            // thread).
             List<Node> nodes = Tasks.await(nodeListTask);
-
-            for (Node node : nodes) {
+            for (Node node : nodes)
                 results.add(node.getId());
-            }
 
-        } catch (ExecutionException exception) {
-            System.out.println("Task failed: " + exception);
-
-        } catch (InterruptedException exception) {
-            System.out.println("Interrupt occurred: " + exception);
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
         }
-
         return results;
     }
-
 }

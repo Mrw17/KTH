@@ -10,6 +10,9 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.II142x">
         <activity
+                android:name=".AccelerometerActivity"
+                android:exported="true"/>
+        <activity
                 android:name=".PhotoActivity"
                 android:exported="true"/>
         <activity
@@ -34,10 +37,7 @@
                         android:host="*"
                         android:pathPrefix="/gps"
                         android:scheme="wear"/>
-                <data
-                        android:host="*"
-                        android:pathPrefix="/pressure"
-                        android:scheme="wear"/>
+
             </intent-filter>
         </service>
 

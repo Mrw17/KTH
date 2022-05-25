@@ -1,5 +1,8 @@
 package com.example.ii142x.communication;
 
+/**
+ * MessagePaths that will be used
+ */
 public class MessagePath {
     private MessagePath(){}
 

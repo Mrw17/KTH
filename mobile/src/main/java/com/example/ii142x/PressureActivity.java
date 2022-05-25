@@ -73,7 +73,7 @@ public class PressureActivity extends Activity implements DataClient.OnDataChang
     }
 
     /**
-     * Closes activit
+     * Closes activity
      */
     private void btnBackPressed(){
         finish();
@@ -105,7 +105,6 @@ public class PressureActivity extends Activity implements DataClient.OnDataChang
     @UiThread
     @SuppressLint("SetTextI18n")
     private void onNewPressure(String newPressure){
-        System.out.println(newPressure + "aaa");
         this.runOnUiThread(() -> {
             try{
                 textViewCurrValue.setText(newPressure);

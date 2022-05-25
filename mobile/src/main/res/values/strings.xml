@@ -26,10 +26,17 @@
     <string name="gpsLatitude">Latitude</string>
     <string name="gpsLongitude">Longitude</string>
 
+    <!-- AccelerometerActivity -->
+    <string name="AccelerometerStart">Start Accelerometer</string>
+    <string name="AccelerometerStop">Stop Accelerometer</string>
+    <string name="Accelerometer">Accelerometer</string>
+
     <!-- PressureActivity -->
     <string name="pressure">Pressure</string>
     <string name="btnSendPhoto">Send photo</string>
     <string name="photoReset">Reset</string>
+    <string name="btnStopReadAccelerometer">Stop accelerometer</string>
+    <string name="btnStartReadAccelerometer">Start accelerometer</string>
 
 
 </resources>

@@ -3,7 +3,6 @@ package com.example.ii142x;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.graphics.Bitmap;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -13,20 +12,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.UiThread;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.example.ii142x.communication.AssetKeys;
 import com.example.ii142x.communication.MessagePath;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.wearable.*;
-import org.jetbrains.annotations.NotNull;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 
 public class PressureActivity extends Activity implements
@@ -34,7 +28,6 @@ public class PressureActivity extends Activity implements
 
     private Button btnReadPressure;
     private TextView textViewCurrPressure;
-    private Button btnBack;
     SensorManager mSensorManager;
     double currentPressure = 0;
 
@@ -54,7 +47,7 @@ public class PressureActivity extends Activity implements
         btnReadPressure = findViewById(R.id.btnGetPressure);
         btnReadPressure.setOnClickListener(v-> getPressureBtnPressed());
 
-        btnBack = findViewById(R.id.btnPressureBack);
+        Button btnBack = findViewById(R.id.btnPressureBack);
         btnBack.setOnClickListener(v-> sendUserBackToMainActivity());
 
         textViewCurrPressure = findViewById(R.id.textViewPressureCurrentValue);
@@ -139,11 +132,10 @@ public class PressureActivity extends Activity implements
      */
     @AfterPermissionGranted(REQUEST_BODY_SENSOR)
     public void requestBodySensorPermission() {
-        String[] perms = {Manifest.permission.BODY_SENSORS};
-        if(EasyPermissions.hasPermissions(this, perms))
+        if(EasyPermissions.hasPermissions(this, BODY_SENSOR))
             Toast.makeText(this, "Permission already granted", Toast.LENGTH_SHORT).show();
         else
-            EasyPermissions.requestPermissions(this, "Please grant the body sensor permission", REQUEST_BODY_SENSOR, perms);
+            EasyPermissions.requestPermissions(this, "Please grant the body sensor permission", REQUEST_BODY_SENSOR, BODY_SENSOR);
     }
 
     /**
@@ -202,6 +194,7 @@ public class PressureActivity extends Activity implements
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
             if (sensorEvent.sensor.getType() == Sensor.TYPE_PRESSURE) {
+                System.out.println("test");
                 currentPressure = sensorEvent.values[0];
                 updateTextViewPressure();
                 sendData(Double.toString(currentPressure));

@@ -33,7 +33,13 @@
     <string name="btnPressureStart">Start reading pressure</string>
     <string name="btnPressureStop">Stop reading pressure</string>
     <string name="pressure">"Current pressure: "</string>
+
+    <!-- photoActivity -->
     <string name="reset">reset</string>
     <string name="btnImageSend">Send image</string>
+
+    <!-- accelerometerActivity -->
+    <string name="btnStartReadAccelerometer">Start accelerometer</string>
+    <string name="btnStopReadAccelerometer">Stop accelerometer</string>
 
 </resources>

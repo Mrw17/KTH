@@ -19,12 +19,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
 
+/**
+ * Activity that will be responsible for sending/receiving a photo over DataClient
+ */
 public class PhotoActivity extends AppCompatActivity implements DataClient.OnDataChangedListener{
-    private Button btnSendPhoto;
-    private Button btnReset;
-    private Button btnBack;
     private ImageView imgView;
 
+    /**
+     * When Activity is created it will se up default GUI
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +36,7 @@ public class PhotoActivity extends AppCompatActivity implements DataClient.OnDat
     }
 
     /**
-     * When user open activity it will
+     * When user resume activity it will
      * add listener on DataClient
      */
     @Override
@@ -57,13 +60,13 @@ public class PhotoActivity extends AppCompatActivity implements DataClient.OnDat
      * Default GUI
      */
     private void setUpGUI() {
-        btnSendPhoto = findViewById(R.id.btnPhotoSend);
+        Button btnSendPhoto = findViewById(R.id.btnPhotoSend);
         btnSendPhoto.setOnClickListener(v-> sendPhotoBtnPressed());
 
-        btnReset = findViewById(R.id.btnPhotoReset);
+        Button btnReset = findViewById(R.id.btnPhotoReset);
         btnReset.setOnClickListener(v -> resetImageBtnPressed());
 
-        btnBack = findViewById(R.id.btnPhotoBack);
+        Button btnBack = findViewById(R.id.btnPhotoBack);
         btnBack.setOnClickListener(v-> backBtnPressed());
 
         imgView = findViewById(R.id.imgView);
@@ -105,7 +108,6 @@ public class PhotoActivity extends AppCompatActivity implements DataClient.OnDat
         }
     }
 
-
     /**
      * When user press the button
      * it will send photo
@@ -124,16 +126,21 @@ public class PhotoActivity extends AppCompatActivity implements DataClient.OnDat
      * @param asset to be sent
      */
     private void sendPhoto(Asset asset) {
-        PutDataMapRequest dataMap = PutDataMapRequest.create(MessagePath.PHOTO);
+        try{
+            PutDataMapRequest dataMap = PutDataMapRequest.create(MessagePath.PHOTO);
 
-        dataMap.getDataMap().putAsset(AssetKeys.PHOTO, asset);
-        dataMap.getDataMap().putLong("time", new Date().getTime());
+            dataMap.getDataMap().putAsset(AssetKeys.PHOTO, asset);
+            dataMap.getDataMap().putLong("time", new Date().getTime());
 
-        PutDataRequest request = dataMap.asPutDataRequest();
-        request.setUrgent();
-        Task<DataItem> dataItemTask = Wearable.getDataClient(this).putDataItem(request);
-        dataItemTask.addOnSuccessListener(
-                dataItem -> System.out.println("Sending image was successful: " + dataItem));
+            PutDataRequest request = dataMap.asPutDataRequest();
+            request.setUrgent();
+            Task<DataItem> dataItemTask = Wearable.getDataClient(this).putDataItem(request);
+            dataItemTask.addOnSuccessListener(
+                    dataItem -> System.out.println("Sending image was successful: " + dataItem));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -152,7 +159,7 @@ public class PhotoActivity extends AppCompatActivity implements DataClient.OnDat
                 try {
                     byteStream.close();
                 } catch (IOException e) {
-                    // ignore
+                    e.printStackTrace();
                 }
             }
         }
