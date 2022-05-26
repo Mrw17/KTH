@@ -21,8 +21,8 @@ public class HeartRateActivity extends Activity implements SensorEventListener, 
 
     private TextView textViewHeartRate;
     private Button btnHeartRate;
-    SensorManager sensorManager;
-    Sensor heartRateSensor;
+    private SensorManager sensorManager;
+    private Sensor heartRateSensor;
     private static final String[] BODY_SENSOR = {Manifest.permission.BODY_SENSORS};
     private final int REQUEST_BODY_SENSOR = 2;
 
