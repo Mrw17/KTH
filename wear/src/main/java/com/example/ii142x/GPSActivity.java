@@ -35,10 +35,9 @@ public class GPSActivity extends Activity implements LocationListener, EasyPermi
     private TextView textViewLongitude;
     private Location location;
     private LocationManager locationManager;
-    private String provider;
     int coordinateDecimals = 5;
     private static final int REQUEST_LOCATION = 3;
-
+    Button btnGps;
     private static final String[] LOCATION_PERMISSIONS =
             {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION};
 
@@ -59,7 +58,7 @@ public class GPSActivity extends Activity implements LocationListener, EasyPermi
      * Default GUI and button listeners
      */
     private void setUpGUI() {
-        Button btnGps = findViewById(R.id.btnGpsGetGPS);
+        btnGps = findViewById(R.id.btnGpsGetGPS);
         btnGps.setOnClickListener(v -> getCurrentGPS());
 
         Button btnBack = findViewById(R.id.btnBackMainActivity);
@@ -75,17 +74,35 @@ public class GPSActivity extends Activity implements LocationListener, EasyPermi
     @SuppressLint("MissingPermission")
     private void getCurrentGPS() {
         if (hasLocationPermissions()) {
-            Criteria criteria = new Criteria();
-            criteria.setAccuracy(Criteria.ACCURACY_COARSE);
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, this);
-            provider = locationManager.getBestProvider(criteria, false);
-            location = locationManager.getLastKnownLocation(provider);
 
-            if (location != null)
-                onLocationChanged(location);
+            if(btnGps.getText().equals(getString(R.string.btnGPSStartReadGPS))){
+                startReadGPS();
+                btnGps.setText(R.string.btnGPSStopReadGPS);
+            }
 
-            } else
-                askForPermissions();
+            else{
+                stopReadGPS();
+                btnGps.setText(R.string.btnGPSStartReadGPS);
+            }
+
+        } else
+            askForPermissions();
+    }
+
+    @SuppressLint("MissingPermission")
+    private void startReadGPS(){
+        Criteria criteria = new Criteria();
+        criteria.setAccuracy(Criteria.ACCURACY_COARSE);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1, this);
+        String provider = locationManager.getBestProvider(criteria, false);
+        location = locationManager.getLastKnownLocation(provider);
+
+        if (location != null)
+            onLocationChanged(location);
+    }
+
+    private void stopReadGPS(){
+        locationManager.removeUpdates(this);
     }
 
     /**
@@ -192,7 +209,7 @@ public class GPSActivity extends Activity implements LocationListener, EasyPermi
     }
 
     /**
-     * Reult on permisson request
+     * Result on permission request
      * @param requestCode The request code for tracking
      * @param permissions The requested permissions. Never null.
      * @param grantResults The grant results for the corresponding permissions

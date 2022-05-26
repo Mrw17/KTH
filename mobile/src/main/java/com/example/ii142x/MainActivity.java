@@ -27,13 +27,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        fixGUI();
+        setUpGUI();
     }
 
     /**
      * Default GUI and listeners on buttons
      */
-    private void fixGUI() {
+    private void setUpGUI() {
         btnAccelerometer = findViewById(R.id.btnMainAccelerometer);
         btnAccelerometer.setOnClickListener(v-> accelerometerBtnPressed());
 
