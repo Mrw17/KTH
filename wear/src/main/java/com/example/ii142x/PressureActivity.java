@@ -194,7 +194,6 @@ public class PressureActivity extends Activity implements
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
             if (sensorEvent.sensor.getType() == Sensor.TYPE_PRESSURE) {
-                System.out.println("test");
                 currentPressure = sensorEvent.values[0];
                 updateTextViewPressure();
                 sendData(Double.toString(currentPressure));

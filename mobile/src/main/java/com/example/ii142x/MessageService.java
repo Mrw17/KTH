@@ -55,16 +55,5 @@ public class MessageService extends WearableListenerService {
             //Broadcast the received Data Layer messages locally//
             LocalBroadcastManager.getInstance(this).sendBroadcast(messageIntent);
         }
-        else if (messageEvent.getPath().equals(MessagePath.GPS)){
-            //Gets the message
-            final String message = getMessage(messageEvent);
-
-            //Fix settings
-            Intent messageIntent = createIntent(MessageBundles.GPS, message);
-
-            //Broadcast the received Data Layer messages locally//
-            LocalBroadcastManager.getInstance(this).sendBroadcast(messageIntent);
-
-        }
     }
 }

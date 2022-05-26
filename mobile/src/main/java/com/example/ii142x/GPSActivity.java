@@ -119,7 +119,6 @@ public class GPSActivity extends Activity  implements MessageClient.OnMessageRec
         if(messageEvent.getPath().equals(MessagePath.GPS)){
             byte[] bytes = messageEvent.getData();
             try{
-                new GpsDTO();
                 GpsDTO gpsDTO = GpsDTO.deserialize(bytes);
                 newMessageReceived(gpsDTO);
             }
