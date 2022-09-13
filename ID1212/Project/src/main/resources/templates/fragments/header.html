@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html th:fragment="layout (menu)" lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Title</title>
+</head>
+<body>
+<div id="header">
+    <header th:fragment="menu">
+        <nav class="navbar navbar-default navbar-static-top navbar-inverse">
+            <div class="container">
+                <ul class="nav navbar-nav">
+
+                    <li class="active">
+                        <a href="/">
+                            <span class="glyphicon glyphicon-home" th:text= "' ' + #{header.index}"/>
+                        </a>
+                    </li>
+
+                    <li class="active" sec:authorize = "!isAuthenticated()">
+                        <a href="/login">
+                            <span class="glyphicon>" th:text="#{header.login}"/>
+                        </a>
+
+                    </li>
+
+                    <li class="active" sec:authorize = "!isAuthenticated()">
+                        <a href="/register">
+                            <span class="glyphicon>" th:text="#{header.register}" />
+                        </a>
+                    </li>
+
+                    <!-- Logout button, only visible when logged in-->
+                    <li class="active" sec:authorize ="isAuthenticated()">
+                        <a href="/logout">
+                            <span class="glyphicon>" th:text="#{header.logout}"/>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </header>
+</div>
+</body>
+</html>
