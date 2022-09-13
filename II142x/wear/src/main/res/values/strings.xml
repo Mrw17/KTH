@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">II142x</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+
+    <!-- Generics -->
+    <string name="back">back</string>
+    <string name="zero_number">0</string>
+
+    <!-- activity_main -->
+    <string name="btnMainHeartRate">Heart rate</string>
+    <string name="btnMainGPS">GPS</string>
+    <string name="btnMainPressure">Pressure</string>
+    <string name="btnMainAccelerator">Accelerator</string>
+    <string name="btnMainPhoto">Photo</string>
+
+    <!-- activity_heart_rate -->
+    <string name="title_activity_heart_rate">Heart rate</string>
+    <string name="btnStartHeartRate">Start reading Heart rate</string>
+    <string name="btnStopHeartRate">Stop reading heart rate</string>
+    <string name="permissions_ask_for_heart_rate">Need permission to body sensors to be able ro record heart rate
+    </string>
+
+    <!-- activity_gps -->
+    <string name="title_activity_gps">GPS</string>
+    <string name="btnGPSStartReadGPS">Start read GPS</string>
+    <string name="btnGPSStopReadGPS">Stop read GPS</string>
+    <string name="askForGPSPermissions">Need permission to gps to be able to get coordinates</string>
+
+    <!-- pressureActivity -->
+    <string name="btnPressureStart">Start reading pressure</string>
+    <string name="btnPressureStop">Stop reading pressure</string>
+    <string name="pressure">"Current pressure: "</string>
+
+    <!-- photoActivity -->
+    <string name="reset">reset</string>
+    <string name="btnImageSend">Send image</string>
+
+    <!-- accelerometerActivity -->
+    <string name="btnStartReadAccelerometer">Start accelerometer</string>
+    <string name="btnStopReadAccelerometer">Stop accelerometer</string>
+
+</resources>
