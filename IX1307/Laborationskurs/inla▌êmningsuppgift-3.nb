@@ -1,0 +1,1459 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     48123,       1451]
+NotebookOptionsPosition[     39701,       1238]
+NotebookOutlinePosition[     45494,       1390]
+CellTagsIndexPosition[     45451,       1387]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Inl\[ADoubleDot]mningsuppgift 3: Matematisk modellering", "Title",
+ CellChangeTimes->{{3.7020153964718504`*^9, 3.7020154137888494`*^9}, {
+  3.7020187055516243`*^9, 3.702018707376836*^9}, {3.7020187962933407`*^9, 
+  3.702018807026209*^9}, {3.702028657458463*^9, 3.702028661202487*^9}, {
+  3.7138557439761114`*^9, 3.7138557473281765`*^9}, {3.7142150972176886`*^9, 
+  3.7142151033173275`*^9}, {3.714469411215145*^9, 3.7144694161162024`*^9}, {
+  3.715329735007349*^9, 3.715329765074149*^9}, {3.716088746166423*^9, 
+  3.716088754438409*^9}, {3.716805138297028*^9, 
+  3.71680514657511*^9}},ExpressionUUID->"5dd42a29-b108-42b8-a983-\
+272c56fbe4ae"],
+
+Cell["\<\
+IX1307 Probleml\[ODoubleDot]sning i Matematik, Inl\[ADoubleDot]mningsuppgift \
+3a, HT2017\
+\>", "Text",
+ CellChangeTimes->{{3.7020154181727023`*^9, 3.702015485349305*^9}, {
+   3.702018373706297*^9, 3.7020183951408343`*^9}, {3.713855750898515*^9, 
+   3.71385575269148*^9}, {3.713857023417962*^9, 3.713857043318161*^9}, {
+   3.7153297711788473`*^9, 3.715329798276104*^9}, 3.716088758396619*^9, 
+   3.716805151396488*^9},ExpressionUUID->"4420f9b9-89aa-40b0-814f-\
+f6521d0140e1"],
+
+Cell["Notebook mall av G\[ODoubleDot]ran Andersson ", "Text",
+ CellChangeTimes->{{3.7144696818091335`*^9, 3.7144697304580574`*^9}, {
+  3.7148066846045275`*^9, 3.714806694635456*^9}, {3.7151514219853077`*^9, 
+  3.715151422749323*^9}, {3.715765028781269*^9, 3.715765043243774*^9}, {
+  3.715765269570201*^9, 3.715765289171832*^9}, {3.716472321134389*^9, 
+  3.716472321296245*^9}},ExpressionUUID->"7f90ee8d-a9a3-4b2f-af60-\
+fc324654d6b6"],
+
+Cell[CellGroupData[{
+
+Cell["1. Inledning", "Section",
+ CellChangeTimes->{{3.7020184038300905`*^9, 3.70201842407902*^9}, {
+  3.7020184851846113`*^9, 
+  3.702018495496278*^9}},ExpressionUUID->"e4b39142-0dad-41ef-960b-\
+169deebefa25"],
+
+Cell["\<\
+Denna uppgift g\[ARing]r ut p\[ARing] att l\[ODoubleDot]sa matematiska \
+problem med hj\[ADoubleDot]lp av Mathematica och skriva en kort rapport \
+direkt i en egen Notebook. Rapporten skall, f\[ODoubleDot]r varje uppgift, \
+beskriva: problemet, figur, ange namn p\[ARing] variabler, \
+l\[ODoubleDot]sningen till problemet inklusive resonemang och sedan diskutera \
+resultatet. \
+\>", "Text",
+ CellChangeTimes->{{3.702018497539891*^9, 3.7020186901387253`*^9}, {
+   3.702018821284701*^9, 3.702018877008258*^9}, {3.702028567956807*^9, 
+   3.7020285796568823`*^9}, {3.7020286860690465`*^9, 
+   3.7020287048515673`*^9}, {3.702028770709833*^9, 3.702028818711341*^9}, {
+   3.7144697463284607`*^9, 3.71446982660649*^9}, {3.71488469803307*^9, 
+   3.714884801847557*^9}, {3.715068567796733*^9, 3.715068633296742*^9}, {
+   3.7151514363586082`*^9, 3.715151491180505*^9}, {3.715252505892714*^9, 
+   3.715252545584469*^9}, {3.715329898759055*^9, 3.715329905726322*^9}, {
+   3.715330216955336*^9, 3.7153304750915194`*^9}, {3.7156732877793837`*^9, 
+   3.7156733517596188`*^9}, {3.715673697222378*^9, 3.7156737085105257`*^9}, {
+   3.715763665385912*^9, 3.715763696166573*^9}, 3.715764392100154*^9, {
+   3.715764491450489*^9, 3.7157645180849*^9}, {3.715839253505949*^9, 
+   3.7158392672990923`*^9}, {3.716805163562169*^9, 
+   3.7168051642407417`*^9}},ExpressionUUID->"3a836114-ccb6-4a37-8573-\
+a3ad145ef385"],
+
+Cell["\<\
+Plagiering \[ADoubleDot]r inte till\[ARing]ten, och k\[ADoubleDot]llor m\
+\[ARing]ste anges n\[ADoubleDot]r ni referera till annat material. L\
+\[ADoubleDot]mna in b\[ARing]de en pdf-fil och notebook-filen i Canvas. \
+Pdf-filen beh\[ODoubleDot]vs f\[ODoubleDot]r plagiatkontroll, d\[ARing] *.nb \
+inte \[ADoubleDot]r accepeterad i URKUND.\
+\>", "Text",
+ CellChangeTimes->{{3.7157637142259417`*^9, 3.715763768895667*^9}, {
+  3.715766506105855*^9, 3.71576653478861*^9}, {3.7158392885327377`*^9, 
+  3.7158393297448177`*^9}},ExpressionUUID->"d7aca567-d0f7-43ff-ae55-\
+1a59104f21e3"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["2. Nyttiga funktioner i Mathematica", "Section",
+ CellChangeTimes->{{3.715673742655837*^9, 3.715673767719419*^9}, {
+   3.715763928470994*^9, 3.71576393043186*^9}, 3.7157644557285643`*^9, 
+   3.715765418836591*^9, 
+   3.715765470782443*^9},ExpressionUUID->"2fb3e62c-d7df-472c-ac97-\
+71f4b3c93d50"],
+
+Cell[CellGroupData[{
+
+Cell["Ekvationssystem", "Subsubsection",
+ CellChangeTimes->{{3.7168081841954436`*^9, 
+  3.7168081928846436`*^9}},ExpressionUUID->"69b320f1-da44-4bb5-92df-\
+99e9bbb36937"],
+
+Cell[TextData[{
+ "Solve kan anv\[ADoubleDot]ndas f\[ODoubleDot]r att l\[ODoubleDot]sa \
+ekvationssystem genom att l\[ADoubleDot]gga in ekvationerna och variablerna i \
+listor. Exempelvis kan ekvationssystemet:\n",
+ Cell[BoxData[{
+  FormBox[
+   RowBox[{
+    RowBox[{
+     RowBox[{"2", "x"}], "-", 
+     RowBox[{"3", "y"}], "+", 
+     RowBox[{"4", "z"}]}], "=", "1"}], 
+   TraditionalForm], "\[IndentingNewLine]", 
+  FormBox[
+   RowBox[{
+    RowBox[{
+     RowBox[{"-", "x"}], "+", 
+     RowBox[{"2", "y"}], "-", 
+     RowBox[{"2", "z"}]}], "=", "2"}], 
+   TraditionalForm], "\[IndentingNewLine]", 
+  FormBox[
+   RowBox[{
+    RowBox[{
+     RowBox[{"3", "x"}], "+", 
+     RowBox[{"3", "y"}], "+", 
+     RowBox[{"4", "z"}]}], "=", "3"}], TraditionalForm]}],ExpressionUUID->
+  "f666d239-13f1-4709-8e52-7797c548cfd0"],
+ "\nl\[ODoubleDot]sas med funktionen:"
+}], "Text",
+ CellChangeTimes->{{3.715766600040471*^9, 3.715766604828458*^9}, {
+   3.715839480617943*^9, 3.715839558908186*^9}, {3.715839710785677*^9, 
+   3.7158397306980133`*^9}, {3.715843108829137*^9, 3.715843210961628*^9}, {
+   3.71647195037712*^9, 3.716471981204733*^9}, {3.716472015704918*^9, 
+   3.716472021635902*^9}, {3.716472121285709*^9, 3.7164721743261957`*^9}, {
+   3.716472338825807*^9, 3.716472347496018*^9}, 3.716805177988352*^9, {
+   3.716808002314073*^9, 3.716808131810503*^9}, {3.716998284761841*^9, 
+   3.716998299107154*^9}},ExpressionUUID->"c073ea3d-47ac-43c1-a121-\
+90d6338a6f3a"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"2", "x"}], "-", 
+       RowBox[{"3", "y"}], "+", 
+       RowBox[{"4", "z"}]}], "\[Equal]", "1"}], ",", " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", "x"}], "+", 
+       RowBox[{"2", "y"}], "-", 
+       RowBox[{"2", "z"}]}], "\[Equal]", "2"}], ",", " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"3", "x"}], "+", 
+       RowBox[{"3", "y"}], "+", 
+       RowBox[{"4", "z"}]}], "\[Equal]", "3"}]}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", " ", "y", ",", " ", "z"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.7168081330585113`*^9, 
+  3.7168081649762435`*^9}},ExpressionUUID->"8917ad41-794f-4962-9c45-\
+5ef3dda6c185"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"x", "\[Rule]", 
+     RowBox[{"-", "28"}]}], ",", 
+    RowBox[{"y", "\[Rule]", "5"}], ",", 
+    RowBox[{"z", "\[Rule]", "18"}]}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.7168081676750436`*^9},ExpressionUUID->"16bab6f9-dd4f-4a4d-9d7f-\
+eb6b793439da"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["3. Problem", "Section",
+ CellChangeTimes->{{3.7020290614845037`*^9, 3.702029109657613*^9}, {
+   3.7144712855796633`*^9, 3.714471292524208*^9}, {3.715329864760683*^9, 
+   3.715329890969419*^9}, 3.715673739602861*^9, 3.7156737700725822`*^9, 
+   3.7157654142394247`*^9, 
+   3.715765472816592*^9},ExpressionUUID->"b3b34a52-c2c9-4bd0-bf72-\
+c573ccc37e37"],
+
+Cell["\<\
+L\[ODoubleDot]s nedanst\[ARing]ende problem. Problemets l\[ODoubleDot]sning \
+och resultat skall inneh\[ARing]lla visualisering d\[ADoubleDot]r det \
+\[ADoubleDot]r relevant.
+T\[ADoubleDot]nk p\[ARing] f\[ODoubleDot]ljande:
+1. Anv\[ADoubleDot]nd l\[ADoubleDot]mpliga stilar fr\[ARing]n meny \
+Format->Style,\[NonBreakingSpace]i notebooken.
+2. N\[ADoubleDot]r ni skriver formler i text-celler, anv\[ADoubleDot]nd \
+matematisk stil (se dator\[ODoubleDot]vning 1).
+3. Gl\[ODoubleDot]m inte att ange namn och enhet f\[ODoubleDot]r axlarna i \
+grafer.\
+\>", "Text",
+ CellChangeTimes->{{3.715763938647009*^9, 3.715763949738159*^9}, {
+  3.715764384327914*^9, 3.71576438472368*^9}, {3.716805223357456*^9, 
+  3.7168052244558983`*^9}},ExpressionUUID->"85d833ea-34ff-4fd0-b2c4-\
+a12502dddfc5"],
+
+Cell[CellGroupData[{
+
+Cell["1. Trafikfl\[ODoubleDot]de", "Subsubsection",
+ CellChangeTimes->{{3.716805226837915*^9, 3.716805227135866*^9}, {
+  3.716807001521596*^9, 3.7168070083544397`*^9}, {3.716807709889277*^9, 
+  3.716807710528885*^9}},ExpressionUUID->"b72db7fd-eea8-464a-a8e9-\
+b958a18bd4b1"],
+
+Cell[TextData[{
+ "Den h\[ADoubleDot]r uppgiften g\[ARing]r ut p\[ARing] och visa hur man kan \
+anv\[ADoubleDot]nda linj\[ADoubleDot]ra ekvationssystem f\[ODoubleDot]r att \
+studera trafikfl\[ODoubleDot]det genom ett trafiksystem. Trafiksystemet best\
+\[ARing]r av gator och korsningar d\[ADoubleDot]r gatorna m\[ODoubleDot]ts. \
+Varje gata har ett visst fl\[ODoubleDot]de, som m\[ADoubleDot]ts i fordon per \
+tidenhet. Vi skall ber\[ADoubleDot]kna trafikfl\[ODoubleDot]det \
+f\[ODoubleDot]r alla gatorna i trafiksystemet, givet fl\[ODoubleDot]det in \
+till trafiksystemet.  Vi g\[ODoubleDot]r ett  viktigt antagande: ",
+ StyleBox["Trafikfl\[ODoubleDot]det bevaras i varje korsning. ",
+  FontSlant->"Italic"],
+ StyleBox["Det betyder att ett fordon som n\[ARing]r en korsning m\[ARing]ste \
+forts\[ADoubleDot]tta genom trafiksystemet. Till exempel om \
+fl\[ODoubleDot]det in till en fyrv\[ADoubleDot]gs korsning \[ADoubleDot]r ",
+  FontVariations->{"CompatibilityType"->0}],
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["x", "1"], TraditionalForm]],ExpressionUUID->
+  "5986d179-094a-4393-bf8c-f7f14b193ce9"],
+ " fordon/tidsenhet respektive 30 fordon/tidsenhet och fl\[ODoubleDot]det ut \
+fr\[ARing]n korsningen \[ADoubleDot]r ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["x", "2"], TraditionalForm]],ExpressionUUID->
+  "448a422e-078b-4638-a4f0-51e57c097387"],
+ " fordon/tidsenhet respektive 50 fordon/tidsenhet, s\[ARing] \
+g\[ADoubleDot]ller det att ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubscriptBox["x", "1"], "+", "30"}], "=", 
+    RowBox[{
+     SubscriptBox["x", "2"], "+", "50"}]}], TraditionalForm]],ExpressionUUID->
+  "9bcea839-b4b0-421e-ab28-ccc0c9e9eb91"],
+ " eller ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubscriptBox["x", "1"], "-", 
+     SubscriptBox["x", "2"]}], "=", "20"}], TraditionalForm]],ExpressionUUID->
+  "bdd278de-3240-4bf8-a8d6-f52d54cec9ea"],
+ ". Varje korsning ger allts\[ARing] en linj\[ADoubleDot]rekvation i ok\
+\[ADoubleDot]nda fl\[ODoubleDot]den ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["x", "n"], TraditionalForm]],ExpressionUUID->
+  "26d3abd3-c269-42f5-9c35-9b048336654a"],
+ ". Om man l\[ODoubleDot]ser ekvationssystemet s\[ARing] kan man best\
+\[ADoubleDot]mma fl\[ODoubleDot]det genom trafiksystemet."
+}], "Text",
+ CellChangeTimes->{{3.716807014032876*^9, 3.716807205913571*^9}, {
+  3.7168084572355366`*^9, 
+  3.7168085094812765`*^9}},ExpressionUUID->"fa5e4783-91a5-4045-93d8-\
+bf0b0dfbc677"],
+
+Cell["\<\
+a) \[CapitalADoubleDot]r v\[ARing]rt antagande om att fl\[ODoubleDot]det \
+bevaras giltigt? N\[ADoubleDot]r kan antagandet vara felaktigt?
+b) Vilka andra f\[ODoubleDot]renklingar har vi antagit?\
+\>", "Text",
+ CellChangeTimes->{{3.7168072679551373`*^9, 3.7168072775805845`*^9}, {
+  3.7168073972424583`*^9, 
+  3.716807404995857*^9}},ExpressionUUID->"5178f887-24ee-4d85-beeb-\
+d622cac7afd3"],
+
+Cell[TextData[{
+ "Studera motorv\[ADoubleDot]gssystemet i figur 1. Siffrorna anger trafikfl\
+\[ODoubleDot]dena i fordon per minut.\nb) St\[ADoubleDot]ll upp \
+ekvationssystemet.\nc) Best\[ADoubleDot]m trafikfl\[ODoubleDot]det f\
+\[ODoubleDot]r v\[ADoubleDot]gsystemet.\nd) Hur \[ADoubleDot]ndras trafikfl\
+\[ODoubleDot]det om  ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["x", "4"], TraditionalForm]],ExpressionUUID->
+  "67bbcf93-3b0c-4a1a-b800-31b160444302"],
+ " \[ADoubleDot]r noll ?\ne) Antag att trafiken m\[ARing]ste flyta i de \
+riktningar som anges i figuren. Om ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["x", "4"], TraditionalForm]],ExpressionUUID->
+  "43771587-87d0-459e-98ba-7bbea6839a78"],
+ " \[ADoubleDot]r noll vad \[ADoubleDot]r d\[ARing] minsta v\[ADoubleDot]rdet \
+p\[ARing] ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["x", "1"], TraditionalForm]],ExpressionUUID->
+  "ccf7c494-ba7a-4ece-8417-e8a38462fb37"],
+ "?"
+}], "Text",
+ CellChangeTimes->{{3.7168072406391706`*^9, 3.7168072546947975`*^9}, {
+  3.7168073463539534`*^9, 
+  3.716807374809083*^9}},ExpressionUUID->"1c5442fc-d478-4021-b74b-\
+5b5b6ee75795"],
+
+Cell[GraphicsData["PostScript", "\<\
+%!
+%%Creator: Mathematica
+%%AspectRatio: .61803 
+MathPictureStart
+/Mabs {
+Mgmatrix idtransform
+Mtmatrix dtransform
+} bind def
+/Mabsadd { Mabs
+3 -1 roll add
+3 1 roll add
+exch } bind def
+%% Graphics
+%%IncludeResource: font Courier
+%%IncludeFont: Courier
+/Courier findfont 10  scalefont  setfont
+% Scaling calculations
+0.5 0.111111 0.0618034 0.123607 [
+[ 0 0 0 0 ]
+[ 1 .61803 0 0 ]
+] MathScale
+% Start of Graphics
+1 setlinecap
+1 setlinejoin
+newpath
+0 0 m
+1 0 L
+1 .61803 L
+0 .61803 L
+closepath
+clip
+newpath
+% Start of user PostScript
+/mathtops {
+gsave
+MBeginOrig
+moveto
+MEndOrig
+currentpoint
+grestore
+} bind def
+/MAtocoords {
+mathtops 4 2 roll mathtops
+4 copy pop pop
+3 -1 roll sub
+/arry exch def
+exch sub
+/arrx exch def
+arrx dup mul
+arry dup mul
+add sqrt
+/arrl exch def
+translate
+} bind def
+/MAarrowhead1 {
+gsave
+MAtocoords
+arrl 0. eq
+{ 0 0 Mdot }
+{
+[ arrx arrl div
+arry arrl div
+-1 arry mul arrl div
+arrx arrl div
+0 0 ]
+concat
+-0.05 0.0125 moveto 0 0 lineto
+-0.05 -0.0125 lineto fill
+-0.05 0.0125 moveto 0 0 lineto
+-0.05 -0.0125 lineto
+-0.05 0.0125 lineto stroke
+} ifelse
+grestore
+} def
+% End of user PostScript
+0 g
+.5 Mabswid
+[ ] 0 setdash
+.5 .18541 m
+.5 .0618 L
+s
+% Start of user PostScript
+0 1. 0 0 MAarrowhead1
+% End of user PostScript
+.72222 .30902 m
+.83333 .30902 L
+s
+% Start of user PostScript
+2. 2. 3. 2. MAarrowhead1
+% End of user PostScript
+.72222 .30902 m
+.61111 .24721 L
+s
+% Start of user PostScript
+2. 2. 1. 1.5 MAarrowhead1
+% End of user PostScript
+.61111 .24721 m
+.5 .18541 L
+s
+.27778 .30902 m
+.38889 .24721 L
+s
+% Start of user PostScript
+-2. 2. -1. 1.5 MAarrowhead1
+% End of user PostScript
+.38889 .24721 m
+.5 .18541 L
+s
+.27778 .30902 m
+.5 .30902 L
+s
+% Start of user PostScript
+-2. 2. 0 2. MAarrowhead1
+% End of user PostScript
+.5 .30902 m
+.72222 .30902 L
+s
+.38889 .55623 m
+.38889 .43262 L
+s
+% Start of user PostScript
+-1. 4. -1. 3. MAarrowhead1
+% End of user PostScript
+.38889 .43262 m
+.55556 .37082 L
+s
+% Start of user PostScript
+-1. 3. 0.5 2.5 MAarrowhead1
+% End of user PostScript
+.55556 .37082 m
+.72222 .30902 L
+s
+.38889 .43262 m
+.33333 .37082 L
+s
+% Start of user PostScript
+-1. 3. -1.5 2.5 MAarrowhead1
+% End of user PostScript
+.33333 .37082 m
+.27778 .30902 L
+s
+.27778 .30902 m
+.16667 .30902 L
+s
+% Start of user PostScript
+-2. 2. -3. 2. MAarrowhead1
+% End of user PostScript
+gsave
+.3 .39554 -69.0312 -11 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 22 translate 1 -1 scale
+/g { setgray} bind def
+/k { setcmykcolor} bind def
+/p { gsave} bind def
+/r { setrgbcolor} bind def
+/w { setlinewidth} bind def
+/C { curveto} bind def
+/F { fill} bind def
+/L { lineto} bind def
+/rL { rlineto} bind def
+/P { grestore} bind def
+/s { stroke} bind def
+/S { show} bind def
+/N {currentpoint 3 -1 roll show moveto} bind def
+/Msf { findfont exch scalefont [1 0 0 -1 0 0 ] makefont setfont} bind def
+/m { moveto} bind def
+/Mr { rmoveto} bind def
+/Mx {currentpoint exch pop moveto} bind def
+/My {currentpoint pop exch moveto} bind def
+/X {0 rmoveto} bind def
+/Y {0 exch rmoveto} bind def
+/MISOfy
+{
+    /newfontname exch def
+    /oldfontname exch def
+
+    oldfontname findfont
+    dup length dict begin
+        {1 index /FID ne {def} {pop pop} ifelse} forall
+        /Encoding MacintoshRomanEncoding def
+        currentdict
+    end
+
+    newfontname exch definefont pop
+} def
+63.000 14.000 moveto
+%%IncludeResource: font Helvetica-Italic
+%%IncludeFont: Helvetica-Italic
+%%BeginResource: font Helvetica-Italic-MISO
+%%BeginFont: Helvetica-Italic-MISO
+/Helvetica-Italic /Helvetica-Italic-MISO MISOfy
+%%EndFont
+%%EndResource
+%%IncludeResource: font Helvetica-Italic-MISO
+%%IncludeFont: Helvetica-Italic-MISO
+/Helvetica-Italic-MISO findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+0.000 0.000 rmoveto
+63.000 14.000 moveto
+%%IncludeResource: font Helvetica-Italic-MISO
+%%IncludeFont: Helvetica-Italic-MISO
+/Helvetica-Italic-MISO findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(x) show
+69.000 16.000 moveto
+%%IncludeResource: font Helvetica-Italic-MISO
+%%IncludeFont: Helvetica-Italic-MISO
+/Helvetica-Italic-MISO findfont 8.500 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(1) show
+75.062 14.000 moveto
+%%IncludeResource: font Helvetica-Italic-MISO
+%%IncludeFont: Helvetica-Italic-MISO
+/Helvetica-Italic-MISO findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+0.000 0.000 rmoveto
+1.000 setlinewidth
+grestore
+gsave
+.58889 .39554 -69.375 -11 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 22 translate 1 -1 scale
+/g { setgray} bind def
+/k { setcmykcolor} bind def
+/p { gsave} bind def
+/r { setrgbcolor} bind def
+/w { setlinewidth} bind def
+/C { curveto} bind def
+/F { fill} bind def
+/L { lineto} bind def
+/rL { rlineto} bind def
+/P { grestore} bind def
+/s { stroke} bind def
+/S { show} bind def
+/N {currentpoint 3 -1 roll show moveto} bind def
+/Msf { findfont exch scalefont [1 0 0 -1 0 0 ] makefont setfont} bind def
+/m { moveto} bind def
+/Mr { rmoveto} bind def
+/Mx {currentpoint exch pop moveto} bind def
+/My {currentpoint pop exch moveto} bind def
+/X {0 rmoveto} bind def
+/Y {0 exch rmoveto} bind def
+/MISOfy
+{
+    /newfontname exch def
+    /oldfontname exch def
+
+    oldfontname findfont
+    dup length dict begin
+        {1 index /FID ne {def} {pop pop} ifelse} forall
+        /Encoding MacintoshRomanEncoding def
+        currentdict
+    end
+
+    newfontname exch definefont pop
+} def
+63.000 14.000 moveto
+%%IncludeResource: font Helvetica-Italic
+%%IncludeFont: Helvetica-Italic
+%%BeginResource: font Helvetica-Italic-MISO
+%%BeginFont: Helvetica-Italic-MISO
+/Helvetica-Italic /Helvetica-Italic-MISO MISOfy
+%%EndFont
+%%EndResource
+%%IncludeResource: font Helvetica-Italic-MISO
+%%IncludeFont: Helvetica-Italic-MISO
+/Helvetica-Italic-MISO findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+0.000 0.000 rmoveto
+63.000 14.000 moveto
+%%IncludeResource: font Helvetica-Italic-MISO
+%%IncludeFont: Helvetica-Italic-MISO
+/Helvetica-Italic-MISO findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(x) show
+69.000 16.062 moveto
+%%IncludeResource: font Helvetica-Italic-MISO
+%%IncludeFont: Helvetica-Italic-MISO
+/Helvetica-Italic-MISO findfont 8.500 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(2) show
+75.750 14.000 moveto
+%%IncludeResource: font Helvetica-Italic-MISO
+%%IncludeFont: Helvetica-Italic-MISO
+/Helvetica-Italic-MISO findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+0.000 0.000 rmoveto
+1.000 setlinewidth
+grestore
+gsave
+.38889 .21013 -69.1562 -11 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 22 translate 1 -1 scale
+/g { setgray} bind def
+/k { setcmykcolor} bind def
+/p { gsave} bind def
+/r { setrgbcolor} bind def
+/w { setlinewidth} bind def
+/C { curveto} bind def
+/F { fill} bind def
+/L { lineto} bind def
+/rL { rlineto} bind def
+/P { grestore} bind def
+/s { stroke} bind def
+/S { show} bind def
+/N {currentpoint 3 -1 roll show moveto} bind def
+/Msf { findfont exch scalefont [1 0 0 -1 0 0 ] makefont setfont} bind def
+/m { moveto} bind def
+/Mr { rmoveto} bind def
+/Mx {currentpoint exch pop moveto} bind def
+/My {currentpoint pop exch moveto} bind def
+/X {0 rmoveto} bind def
+/Y {0 exch rmoveto} bind def
+/MISOfy
+{
+    /newfontname exch def
+    /oldfontname exch def
+
+    oldfontname findfont
+    dup length dict begin
+        {1 index /FID ne {def} {pop pop} ifelse} forall
+        /Encoding MacintoshRomanEncoding def
+        currentdict
+    end
+
+    newfontname exch definefont pop
+} def
+63.000 14.000 moveto
+%%IncludeResource: font Helvetica-Italic
+%%IncludeFont: Helvetica-Italic
+%%BeginResource: font Helvetica-Italic-MISO
+%%BeginFont: Helvetica-Italic-MISO
+/Helvetica-Italic /Helvetica-Italic-MISO MISOfy
+%%EndFont
+%%EndResource
+%%IncludeResource: font Helvetica-Italic-MISO
+%%IncludeFont: Helvetica-Italic-MISO
+/Helvetica-Italic-MISO findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+0.000 0.000 rmoveto
+63.000 14.000 moveto
+%%IncludeResource: font Helvetica-Italic-MISO
+%%IncludeFont: Helvetica-Italic-MISO
+/Helvetica-Italic-MISO findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(x) show
+69.000 16.000 moveto
+%%IncludeResource: font Helvetica-Italic-MISO
+%%IncludeFont: Helvetica-Italic-MISO
+/Helvetica-Italic-MISO findfont 8.500 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(4) show
+75.312 14.000 moveto
+%%IncludeResource: font Helvetica-Italic-MISO
+%%IncludeFont: Helvetica-Italic-MISO
+/Helvetica-Italic-MISO findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+0.000 0.000 rmoveto
+1.000 setlinewidth
+grestore
+gsave
+.61111 .21013 -69.2812 -11 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 22 translate 1 -1 scale
+/g { setgray} bind def
+/k { setcmykcolor} bind def
+/p { gsave} bind def
+/r { setrgbcolor} bind def
+/w { setlinewidth} bind def
+/C { curveto} bind def
+/F { fill} bind def
+/L { lineto} bind def
+/rL { rlineto} bind def
+/P { grestore} bind def
+/s { stroke} bind def
+/S { show} bind def
+/N {currentpoint 3 -1 roll show moveto} bind def
+/Msf { findfont exch scalefont [1 0 0 -1 0 0 ] makefont setfont} bind def
+/m { moveto} bind def
+/Mr { rmoveto} bind def
+/Mx {currentpoint exch pop moveto} bind def
+/My {currentpoint pop exch moveto} bind def
+/X {0 rmoveto} bind def
+/Y {0 exch rmoveto} bind def
+/MISOfy
+{
+    /newfontname exch def
+    /oldfontname exch def
+
+    oldfontname findfont
+    dup length dict begin
+        {1 index /FID ne {def} {pop pop} ifelse} forall
+        /Encoding MacintoshRomanEncoding def
+        currentdict
+    end
+
+    newfontname exch definefont pop
+} def
+63.000 14.000 moveto
+%%IncludeResource: font Helvetica-Italic
+%%IncludeFont: Helvetica-Italic
+%%BeginResource: font Helvetica-Italic-MISO
+%%BeginFont: Helvetica-Italic-MISO
+/Helvetica-Italic /Helvetica-Italic-MISO MISOfy
+%%EndFont
+%%EndResource
+%%IncludeResource: font Helvetica-Italic-MISO
+%%IncludeFont: Helvetica-Italic-MISO
+/Helvetica-Italic-MISO findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+0.000 0.000 rmoveto
+63.000 14.000 moveto
+%%IncludeResource: font Helvetica-Italic-MISO
+%%IncludeFont: Helvetica-Italic-MISO
+/Helvetica-Italic-MISO findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(x) show
+69.000 16.000 moveto
+%%IncludeResource: font Helvetica-Italic-MISO
+%%IncludeFont: Helvetica-Italic-MISO
+/Helvetica-Italic-MISO findfont 8.500 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(5) show
+75.562 14.000 moveto
+%%IncludeResource: font Helvetica-Italic-MISO
+%%IncludeFont: Helvetica-Italic-MISO
+/Helvetica-Italic-MISO findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+0.000 0.000 rmoveto
+1.000 setlinewidth
+grestore
+gsave
+.46667 .3461 -69.1875 -11 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 22 translate 1 -1 scale
+/g { setgray} bind def
+/k { setcmykcolor} bind def
+/p { gsave} bind def
+/r { setrgbcolor} bind def
+/w { setlinewidth} bind def
+/C { curveto} bind def
+/F { fill} bind def
+/L { lineto} bind def
+/rL { rlineto} bind def
+/P { grestore} bind def
+/s { stroke} bind def
+/S { show} bind def
+/N {currentpoint 3 -1 roll show moveto} bind def
+/Msf { findfont exch scalefont [1 0 0 -1 0 0 ] makefont setfont} bind def
+/m { moveto} bind def
+/Mr { rmoveto} bind def
+/Mx {currentpoint exch pop moveto} bind def
+/My {currentpoint pop exch moveto} bind def
+/X {0 rmoveto} bind def
+/Y {0 exch rmoveto} bind def
+/MISOfy
+{
+    /newfontname exch def
+    /oldfontname exch def
+
+    oldfontname findfont
+    dup length dict begin
+        {1 index /FID ne {def} {pop pop} ifelse} forall
+        /Encoding MacintoshRomanEncoding def
+        currentdict
+    end
+
+    newfontname exch definefont pop
+} def
+63.000 14.000 moveto
+%%IncludeResource: font Helvetica-Italic
+%%IncludeFont: Helvetica-Italic
+%%BeginResource: font Helvetica-Italic-MISO
+%%BeginFont: Helvetica-Italic-MISO
+/Helvetica-Italic /Helvetica-Italic-MISO MISOfy
+%%EndFont
+%%EndResource
+%%IncludeResource: font Helvetica-Italic-MISO
+%%IncludeFont: Helvetica-Italic-MISO
+/Helvetica-Italic-MISO findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+0.000 0.000 rmoveto
+63.000 14.000 moveto
+%%IncludeResource: font Helvetica-Italic-MISO
+%%IncludeFont: Helvetica-Italic-MISO
+/Helvetica-Italic-MISO findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(x) show
+69.000 16.062 moveto
+%%IncludeResource: font Helvetica-Italic-MISO
+%%IncludeFont: Helvetica-Italic-MISO
+/Helvetica-Italic-MISO findfont 8.500 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(3) show
+75.375 14.000 moveto
+%%IncludeResource: font Helvetica-Italic-MISO
+%%IncludeFont: Helvetica-Italic-MISO
+/Helvetica-Italic-MISO findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+0.000 0.000 rmoveto
+1.000 setlinewidth
+grestore
+gsave
+.38889 .59331 -72.9375 -11 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 22 translate 1 -1 scale
+/g { setgray} bind def
+/k { setcmykcolor} bind def
+/p { gsave} bind def
+/r { setrgbcolor} bind def
+/w { setlinewidth} bind def
+/C { curveto} bind def
+/F { fill} bind def
+/L { lineto} bind def
+/rL { rlineto} bind def
+/P { grestore} bind def
+/s { stroke} bind def
+/S { show} bind def
+/N {currentpoint 3 -1 roll show moveto} bind def
+/Msf { findfont exch scalefont [1 0 0 -1 0 0 ] makefont setfont} bind def
+/m { moveto} bind def
+/Mr { rmoveto} bind def
+/Mx {currentpoint exch pop moveto} bind def
+/My {currentpoint pop exch moveto} bind def
+/X {0 rmoveto} bind def
+/Y {0 exch rmoveto} bind def
+63.000 14.000 moveto
+%%IncludeResource: font Helvetica
+%%IncludeFont: Helvetica
+/Helvetica findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+0.000 0.000 rmoveto
+63.000 14.000 moveto
+%%IncludeResource: font Helvetica
+%%IncludeFont: Helvetica
+/Helvetica findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(200) show
+82.875 14.000 moveto
+%%IncludeResource: font Helvetica
+%%IncludeFont: Helvetica
+/Helvetica findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+0.000 0.000 rmoveto
+1.000 setlinewidth
+grestore
+gsave
+.13333 .30284 -69.625 -11 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 22 translate 1 -1 scale
+/g { setgray} bind def
+/k { setcmykcolor} bind def
+/p { gsave} bind def
+/r { setrgbcolor} bind def
+/w { setlinewidth} bind def
+/C { curveto} bind def
+/F { fill} bind def
+/L { lineto} bind def
+/rL { rlineto} bind def
+/P { grestore} bind def
+/s { stroke} bind def
+/S { show} bind def
+/N {currentpoint 3 -1 roll show moveto} bind def
+/Msf { findfont exch scalefont [1 0 0 -1 0 0 ] makefont setfont} bind def
+/m { moveto} bind def
+/Mr { rmoveto} bind def
+/Mx {currentpoint exch pop moveto} bind def
+/My {currentpoint pop exch moveto} bind def
+/X {0 rmoveto} bind def
+/Y {0 exch rmoveto} bind def
+63.000 14.000 moveto
+%%IncludeResource: font Helvetica
+%%IncludeFont: Helvetica
+/Helvetica findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+0.000 0.000 rmoveto
+63.000 14.000 moveto
+%%IncludeResource: font Helvetica
+%%IncludeFont: Helvetica
+/Helvetica findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(40) show
+76.250 14.000 moveto
+%%IncludeResource: font Helvetica
+%%IncludeFont: Helvetica
+/Helvetica findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+0.000 0.000 rmoveto
+1.000 setlinewidth
+grestore
+gsave
+.87222 .30284 -72.9375 -11 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 22 translate 1 -1 scale
+/g { setgray} bind def
+/k { setcmykcolor} bind def
+/p { gsave} bind def
+/r { setrgbcolor} bind def
+/w { setlinewidth} bind def
+/C { curveto} bind def
+/F { fill} bind def
+/L { lineto} bind def
+/rL { rlineto} bind def
+/P { grestore} bind def
+/s { stroke} bind def
+/S { show} bind def
+/N {currentpoint 3 -1 roll show moveto} bind def
+/Msf { findfont exch scalefont [1 0 0 -1 0 0 ] makefont setfont} bind def
+/m { moveto} bind def
+/Mr { rmoveto} bind def
+/Mx {currentpoint exch pop moveto} bind def
+/My {currentpoint pop exch moveto} bind def
+/X {0 rmoveto} bind def
+/Y {0 exch rmoveto} bind def
+63.000 14.000 moveto
+%%IncludeResource: font Helvetica
+%%IncludeFont: Helvetica
+/Helvetica findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+0.000 0.000 rmoveto
+63.000 14.000 moveto
+%%IncludeResource: font Helvetica
+%%IncludeFont: Helvetica
+/Helvetica findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(100) show
+82.875 14.000 moveto
+%%IncludeResource: font Helvetica
+%%IncludeFont: Helvetica
+/Helvetica findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+0.000 0.000 rmoveto
+1.000 setlinewidth
+grestore
+gsave
+.5 .02472 -69.625 -11 Mabsadd m
+1 1 Mabs scale
+currentpoint translate
+0 22 translate 1 -1 scale
+/g { setgray} bind def
+/k { setcmykcolor} bind def
+/p { gsave} bind def
+/r { setrgbcolor} bind def
+/w { setlinewidth} bind def
+/C { curveto} bind def
+/F { fill} bind def
+/L { lineto} bind def
+/rL { rlineto} bind def
+/P { grestore} bind def
+/s { stroke} bind def
+/S { show} bind def
+/N {currentpoint 3 -1 roll show moveto} bind def
+/Msf { findfont exch scalefont [1 0 0 -1 0 0 ] makefont setfont} bind def
+/m { moveto} bind def
+/Mr { rmoveto} bind def
+/Mx {currentpoint exch pop moveto} bind def
+/My {currentpoint pop exch moveto} bind def
+/X {0 rmoveto} bind def
+/Y {0 exch rmoveto} bind def
+63.000 14.000 moveto
+%%IncludeResource: font Helvetica
+%%IncludeFont: Helvetica
+/Helvetica findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+0.000 0.000 rmoveto
+63.000 14.000 moveto
+%%IncludeResource: font Helvetica
+%%IncludeFont: Helvetica
+/Helvetica findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+(60) show
+76.250 14.000 moveto
+%%IncludeResource: font Helvetica
+%%IncludeFont: Helvetica
+/Helvetica findfont 12.000 scalefont
+[1 0 0 -1 0 0 ] makefont setfont
+0.000 0.000 0.000 setrgbcolor
+0.000 0.000 rmoveto
+1.000 setlinewidth
+grestore
+% End of Graphics
+MathPictureEnd
+\
+\>"], "NumberedFigure",
+ ImageSize->{288., 177.93799999999993`},
+ ImageMargins->{{35, 0}, {0, 
+  0}},ImageCache->GraphicsData["CompressedBitmap", "\<\
+eJztW+mPVEUQf8ybY3dZWFZYWUEElIjijSBmNZ4oJl6JH4wx8VjQETUeQeKB
+JiqKiiiOgGY5vLg88EAkoyYmRqMfFU/8sH+EiYkx8cg4XdX962PqHbsMJia7
+2Z1Xqaquqq6urq5XPXvl4Mrlt941uPL2ZYOzlqwYvHf57cvum3XpPSuaqHhc
+FI3b2/zrmhUpuBFF5qPR/G18qD4Upv3wAXqUm5/1qBq5PwNRbbhRTCRXo3qj
+8T0L+ZYecdQYrjWH8U+RPktRtU7q+E/TmRYbKURjQ6Jv6KHUDke1ASgqELrD
+2jFQi4b1yLo2bKA2XNCGOKjoO1ewtVHZxbOrRMOkiSbcoqEQGsT4A4FU0sgS
+jM88qVpr06CiHsJkdkAweSYFk684i6Dd1jKV2FMa2GhIAwNqXXh1lINoZbTH
+cokqetNtssU0tiyudROXwzZXfyVYKWVjDqcFC1eW0enLaQLZxI8y59BDr43b
+44ARhe0RNQ1kdldUIde+bVcS+UU9Ciph/TJqxEH1KCrEwVEjflaPskL8PGrE
+T+rRoRA/jRrxo3p0KcSPo0b8oB7dCvFDAoIdF+tzgtf94BhpjDRGyk9qySG0
+hSkxFQG52zoQUxZwOrt+j/FdgDTpHR7FGV+fJ8eCaSKg44mvFPlpnE/QnYEo
+YuEDYxYEHAHoOOJTZyufHP7JzyJ3sMg3Xeu0zth8VuuY53QIPxLQbG8sm2OO
+Rjq89fjtrOoVejinNFvCI7osGlqV8aZQo9pDTWSGsAj9Am5KmrbY01YW5qFt
+fpUeTkHgHNNOfVIwa+esMcFN6dZzRwPqyyc2xbDXTESadSOvsTQUniVecZBY
+Qj/MsLEzJV1crMluSaYwFE/Vuo6l112lQQSX9HKwPVhZG0xzAE1OEROHduKH
+jNKGvKH9BgFY5CI8UWtOpVlFTYHaE/yNFAw3RakblbtdbS2VvL94LGWyEKjz
+BFyPLNKtjM2e3uX6vowtH1WrrRWy3pY6QCdhwqf66ShZDNxf9wtNvTzbA1uc
+dGNGNM2eCm3zAXWnD9njBr1TETdd6iWciMt4u6hnAerMOfadQJVjUMv7BA/p
+hY4BQJX8w99mhZ8IYXCugOPkyA9SdQEgTdoPxGJA+5m0D4jLAO1j0l4grgC0
+l0kfCGZcJeDeY/b3MP4aQJq0B4hrAem1fRuI6wFp17wJxI2A+NziU6ykEDcD
+2uGsIFXqSwHxqkZb1WO8QtwCaCuThtRjQoN2nIGGmLRJPSYpxHJAm5i0EYg7
+FdSjoI0OaaJC3A1ooyOQqvx7AW1ySGTXCkCa9JJ6dCrESkAvOaMIcT8gPWoD
+PEdhSG9BDwIqgLqB2WtAUOKmomkVoBKoNWZf7wc+hcUjgCqgrmf254Xg6RBw
+j+TkW8di10HPy4A0aS0QWwCtZdLTQLwK6GkmrQFiO6A1THpSMGOngFvN7AtN
+PnDKjox+m60bjgN0HqDlAvUoQUkpXUmGDScnWx8bnFQ4OiVCH4JsNgy9ALgq
+cLOB60v0laSt7GmjP+aROivzsufj9nSkPg8VB/TyPhO2XwTcLcDNBK43ZT5Z
+2vLiTuKJna5Jtm4w7T/lJrHpmdAkm4BkNQNTWgzcUuBmADch0akJjbmOUGdO
+0+ZlzbVk55rRVqSi4Ahl/dHC3l0M6s0CdRqonYkzlxqbQRWd3iwO5upKk95k
+CgFfUouXssKRyvZpWMklwN0A3DTgSjnmaLXJDfGE9rCe4xn0qPgloBsU7vwy
+WthkbYO2YabxLaIC4y09xfj5eiTbHkRztZ53XWw8Thci7hJQqQ6KEbe5o/DQ
+VshM0n9TT5xk0qazqSVxkkS9CZOcCVyXawIaBTChvbvuTHqUHO+EkZj3yqEX
+h0FiniHqIHbescBNDL3uW3I4U+wCTXVTrOPlrEOJXu7LOCWCWV8M6lIs9Bzg
+TPvGe9Gs1g/TubkwII2kwDkKa3aMMMuLQF2GWc4FzlRsw/Z98D8odTKKPumt
+cydMvtR1ld6BGQLzFZmPCmpfh890Hf+YwLQNTPr14vGktOLsZR0ClN6ugoAX
+WcDqpHB1LmZxA8eOIL9fDi/pt64nkiLCHDzexTM71TR2lsCql5OFnR3u/uwu
+p9uZXQwdm1mH9FpzNlJJarMyPGSVgy6GQ7ax/DWJ8hN7jyXXbk2+EHZzgzZ6
+KlGu3EesCM44F0K5o6ffAiWhUm+wKXJYHUr2xtht29rWkO7lPyMIX9SSb2lw
+nBB6bjNvEYzXXcm1gvyF2Igp3T15jyyEfN2UeVaQv8DIl7t458AH77KMdYKM
++Qij9D6dnfD7LOw5QdgZ7l5Lb8OdCXkfJsu7A0y6oSZ1Mm7DND9mpvUCkz0N
+PmWmFwQmWwF9xkw1gek69Uln5ufM9CL0X60gamF94ZBipPEpCvqSSdT4KeI1
+j0rKrxwStdZoP/cq6GsvJ0VuW3wCDKJt2mOPc/9QM99lcIv9PV4a0rcFTKIW
+cQViaVp9nnrOnXt9EW6vnCyjRuD5CqKuWn9gmeLlhmf0ACIlM7ni0MZ9i9ZG
+PTjKLN22mMslMg5wyjAd6tS4y87IRU8Cs5ABVFfaDRTDs72jEczm6g7vQyYF
+pCdzN14mYi0WIHLLiKHJ6QLLgpd0dlll0lniPZK9bFVBZoKtB6t1GlzUid3R
+lyLV7/qz63REP+xEtE45uBPz8m213oPwPgn6u+GZfkGQ9922AfkA8uxoOWJg
+iv8eYF1xIgw4UZaAQ8p51UTYaJv2uAuTeAz5McLW9yBG5sIn89LFyKcZi3s3
+MEQ+r/qRLo6H0lPSh+x3d0H2IdaPMJ8DDaflHPtRoCr7iJuKPM7xj2PE3gPP
+zy9N3xtt8dNIcDhNB/VXh91eLATsU8H+G7NvF5js7d7vzLRDYJoESX8wk9Sc
+7wbTn8y0S2DqhLp/mGm3wFSCpEYyU8FnYn/pm6yi4WSyZuHsFr0lCHPp9oKM
+sB2ZWGtEJQ27G1kvJ7YUWi5jdyHsc2IrwJbSsDuxYXNiO4EtpmEpwLpGgB0f
+LvJIsFmrPUYfo4/R/790gg/jv3mMFOavN8ReRWsvDYOGI9fL9tXNkvHdILnL
+93egzOGyt3aOMu/78SPqfOqzfLM3Lb9Ab1f7+C9WtUVQZSvqNvbl9dS2Gn3C
+ddIhXn1oDduwTPbFuk2XSVrDK4GG9Ou9Ed3JaQ3cGrRtM3wLti32v6ZHejd+
+oW9H4/qhxIWs6NgzoS7989IhRtZQSHX7Ex1Oigi+A8p2tmErbQ5CIIrs/89g
+AduSH7YEflY/o/j3mozLjb/Tc2807l9TrJiY\
+\>"],ImageRangeCache->{{{0., 431.}, {265., 0.}} -> {-4.523329699977693, \
+-0.5000241910320761, 0.031484893503325014, \
+0.028301940845162056}},ExpressionUUID->"ff0ae369-c225-491e-9dc8-4ba9de92cf12"],
+
+Cell["figur 1. Trafikfl\[ODoubleDot]de i en motorv\[ADoubleDot]gskorsning", \
+"Text",
+ CellChangeTimes->{{3.7168073021200137`*^9, 
+  3.7168073360264883`*^9}},ExpressionUUID->"d37d68f1-d6e9-4a65-8d41-\
+3e8e6bf91621"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Kaniner", "Subsubsection",
+ CellChangeTimes->{{3.7168091784230614`*^9, 
+  3.7168091876738615`*^9}},ExpressionUUID->"045c51a1-b154-47e7-98fb-\
+397a4441ab97"],
+
+Cell[TextData[{
+ "Leonardo av Pisa, \[ADoubleDot]ven k\[ADoubleDot]nd som Fibonacci (circa \
+1170-1250) skapade en av de \[ADoubleDot]ldsta matematiska modellerna av f\
+\[ODoubleDot]r\[ODoubleDot]kning. Han modellerade \
+f\[ODoubleDot]r\[ODoubleDot]kning av kaniner. Genom att modellera kaninpar \
+kunde han undvika att ta h\[ADoubleDot]nsyn till individuella kaniner av \
+olika k\[ODoubleDot]n. Modellen beskriver f\[ODoubleDot]r\[ODoubleDot]kningen \
+av kaniner fr\[ARing]n m\[ARing]nad ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"n", "=", "1"}], TraditionalForm]],ExpressionUUID->
+  "949b9793-4b11-4989-b73d-8c12fdaa92cf"],
+ " d\[ADoubleDot]r ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["p", "n"], TraditionalForm]],ExpressionUUID->
+  "abcdc777-9ef6-4b8b-9a4f-65aace8b0aa9"],
+ " \[ADoubleDot]r antal kaniner vid m\[ARing]nad ",
+ Cell[BoxData[
+  FormBox["n", TraditionalForm]],ExpressionUUID->
+  "335606f4-086c-438c-8913-91b3d665c456"],
+ ". N\[ADoubleDot]r en kanin f\[ODoubleDot]ds, s\[ARing] \[ADoubleDot]r den \
+en unge under en m\[ARing]nad och sedan f\[ODoubleDot]r\[ODoubleDot]kar sig \
+kaninparen varje m\[ARing]nad. Antal kaniner kan d\[ARing] beskrivs av en \
+differensekvation:"
+}], "Text",
+ CellChangeTimes->{{3.7169983189084187`*^9, 3.716998325189104*^9}, {
+   3.716998396087386*^9, 3.716998631555373*^9}, {3.7169986806766376`*^9, 
+   3.7169989468858356`*^9}, 3.7169991792442427`*^9, {3.716999712641451*^9, 
+   3.71699978611061*^9}, {3.717000137680294*^9, 
+   3.717000137680347*^9}},ExpressionUUID->"62ada6f1-500f-4441-8637-\
+402b60c24b3e"],
+
+Cell[TextData[Cell[BoxData[
+ FormBox[
+  RowBox[{
+   SubscriptBox["p", 
+    RowBox[{"n", "+", "2"}]], "=", 
+   RowBox[{
+    SubscriptBox["p", 
+     RowBox[{"n", "+", "1"}]], "+", 
+    SubscriptBox["p", "n"]}]}], TraditionalForm]],
+ FormatType->
+  "TraditionalForm",ExpressionUUID->"f26cfacd-e6b8-4c00-b271-f66673d360fe"]], \
+"Text",
+ CellChangeTimes->{{3.716998948449976*^9, 
+  3.71699895654877*^9}},ExpressionUUID->"8d7240a1-15f9-46e0-b144-\
+e227af853222"],
+
+Cell[TextData[{
+ "d\[ADoubleDot]r vi antar att vi har bara ett kaninpar vid m\[ARing]nad ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"n", "=", "1"}], TraditionalForm]],ExpressionUUID->
+  "b179a019-561f-4c82-bd6d-4ab6589651bd"],
+ ", dvs intialv\[ADoubleDot]rdena \[ADoubleDot]r ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["p", "1"], "=", "1"}], TraditionalForm]],ExpressionUUID->
+  "42020040-a332-41ac-8caa-b5dfabf57596"],
+ " och ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["p", "2"], "=", "1"}], TraditionalForm]],ExpressionUUID->
+  "6f7cb983-a0ae-431e-804c-ad798d115960"],
+ ". Vilket betyder att ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["p", "3"], "=", "2"}], TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "94647feb-46f6-413f-a3a8-13186eee860c"],
+ ",  ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["p", "4"], "=", "3"}], TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "5a0d8836-5f09-4aeb-a4e5-681ee0cdde06"],
+ " och ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["p", "5"], "=", "5."}], TraditionalForm]],
+  FormatType->"TraditionalForm",ExpressionUUID->
+  "33d4be63-7dc1-4046-961d-03cda6cd5da0"]
+}], "Text",
+ CellChangeTimes->{{3.7168091909342613`*^9, 3.7168091911214614`*^9}, {
+  3.71699895905027*^9, 3.716999003677573*^9}, {3.716999042186041*^9, 
+  3.716999082867064*^9}, {3.716999153695615*^9, 3.716999271993392*^9}, {
+  3.716999834906412*^9, 3.716999870985868*^9}, {3.7170000228975763`*^9, 
+  3.717000067490189*^9}, {3.717000145529058*^9, 
+  3.717000173062549*^9}},ExpressionUUID->"4373f09c-5fdf-4ef0-9483-\
+74f2a7981fbe"],
+
+Cell["\<\
+a) Ber\[ADoubleDot]kna talf\[ODoubleDot]ljden och rita en graf \
+\[ODoubleDot]ver den.
+b) Unders\[ODoubleDot]k talf\[ODoubleDot]ljden och diskutera tillv\
+\[ADoubleDot]xtakten.
+c) Vilka begr\[ADoubleDot]nsningar har modellen?
+d) Hur kan man f\[ODoubleDot]rb\[ADoubleDot]ttra modellen?\
+\>", "Text",
+ CellChangeTimes->{{3.716999251027968*^9, 3.716999330913383*^9}, {
+  3.716999414168685*^9, 
+  3.716999560887114*^9}},ExpressionUUID->"b0f73050-6aa9-4242-9cdc-\
+fdb88ebd1c63"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{967, 960},
+WindowMargins->{{Automatic, 0}, {Automatic, 0}},
+TrackCellChangeTimes->True,
+SpellingDictionaries->{"CorrectWords"->{"\[CapitalODoubleDot]vningsexempel"}},
+Magnification:>1.25 Inherited,
+FrontEndVersion->"11.1 for Mac OS X x86 (32-bit, 64-bit Kernel) (April 27, \
+2017)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[StyleDefinitions -> "Default.nb"]], 
+   Cell["Modify the definitions below to change the default appearance of all \
+cells in a given style. \nMake modifications to any definition using commands \
+in the Format menu.", "Text"], 
+   Cell[
+    CellGroupData[{
+      Cell["Notebook Options Settings", "Section"], 
+      Cell[
+       StyleData["Notebook"], ShowCellBracket -> Automatic]}, Closed]], 
+   Cell[
+    CellGroupData[{
+      Cell["Styles for Title and Section Cells", "Section"], 
+      Cell[
+       CellGroupData[{
+         Cell["Title", "Subsection"], 
+         Cell[
+          StyleData["Title"], FontFamily -> "Arial", FontSize -> 36, 
+          FontWeight -> "Bold", FontColor -> GrayLevel[0.5]], 
+         Cell[
+          StyleData["Subtitle"], FontFamily -> "Arial", FontWeight -> "Bold"], 
+         Cell[
+          StyleData["Subsubtitle"], FontFamily -> "Arial", FontSize -> 18]}, 
+        Closed]], 
+      Cell[
+       CellGroupData[{
+         Cell["Section", "Subsection"], 
+         Cell[
+          StyleData["Section"], CellDingbat -> None, ShowGroupOpener -> True, 
+          FontFamily -> "Arial", FontSize -> 24, FontWeight -> "Bold", 
+          FontColor -> GrayLevel[0.5]], 
+         Cell[
+          StyleData["Subsection"], CellDingbat -> None, ShowGroupOpener -> 
+          True, FontFamily -> "Arial", FontSize -> 18, FontWeight -> "Bold", 
+          FontColor -> GrayLevel[0.3]], 
+         Cell[
+          StyleData["Subsubsection"], CellDingbat -> None, ShowGroupOpener -> 
+          True, FontFamily -> "Arial", FontSize -> 16, FontWeight -> "Bold", 
+          FontColor -> GrayLevel[0.]], 
+         Cell[
+          StyleData["Subsubsubsection"], CellDingbat -> None, ShowGroupOpener -> 
+          True, MenuSortingValue -> 1400, FontSize -> 14, FontWeight -> 
+          "Plain", FontSlant -> "Italic", FontColor -> GrayLevel[0]]}, 
+        Closed]]}, Closed]], 
+   Cell[
+    CellGroupData[{
+      Cell["Styles for Body Text", "Section"], 
+      Cell[
+       CellGroupData[{
+         Cell["Standard", "Subsection"], 
+         Cell[
+          StyleData["Text"], FontFamily -> "Times"], 
+         Cell[
+          StyleData["SmallText"], MenuSortingValue -> 1425, FontFamily -> 
+          "Times"]}, Closed]], 
+      Cell[
+       CellGroupData[{
+         Cell["Display", "Subsection"], 
+         Cell[
+          CellGroupData[{
+            Cell["Lists", "Subsubsection"], 
+            Cell[
+             StyleData["Item"], CellDingbat -> 
+             StyleBox["\[FilledCircle]", Alignment -> Baseline, 
+               GrayLevel[0.3]], FontFamily -> "Times"], 
+            Cell[
+             StyleData["ItemParagraph"], FontFamily -> "Times"], 
+            Cell[
+             StyleData["Subitem"], CellDingbat -> 
+             StyleBox["\[FilledSmallCircle]", Alignment -> Baseline, 
+               GrayLevel[0.3]], FontFamily -> "Times"], 
+            Cell[
+             StyleData["SubitemParagraph"], FontFamily -> "Times"], 
+            Cell[
+             StyleData["Subsubitem"], CellDingbat -> 
+             StyleBox["\[FilledSmallCircle]", Alignment -> Baseline, 
+               GrayLevel[0.5]], FontFamily -> "Times"], 
+            Cell[
+             StyleData["SubsubitemParagraph"], FontFamily -> "Times"], 
+            Cell[
+             StyleData["ItemNumbered"], FontFamily -> "Times"], 
+            Cell[
+             StyleData["SubitemNumbered"], FontFamily -> "Times"], 
+            Cell[
+             StyleData["SubsubitemNumbered"], FontFamily -> "Times"]}, 
+           Closed]], 
+         Cell[
+          CellGroupData[{
+            Cell["Templates", "Subsubsection"], 
+            Cell[
+             StyleData[
+             "SideCaptionArray", StyleDefinitions -> StyleData["Text"]], 
+             GridBoxOptions -> {
+              GridBoxAlignment -> {"Columns" -> {Left}, "Rows" -> {Center}}, 
+               GridBoxItemSize -> {
+                "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}}], 
+            Cell[
+             StyleData[
+             "SideCaption", StyleDefinitions -> StyleData["SmallText"]]]}, 
+           Closed]]}, Closed]]}, Closed]], 
+   Cell[
+    CellGroupData[{
+      Cell["Styles for Input and Output Cells", "Section"], 
+      Cell[
+       StyleData["Input"], ShowCellBracket -> True], 
+      Cell[
+       StyleData["InputOnly"], ShowCellBracket -> True], 
+      Cell[
+       StyleData["Code"], ShowCellBracket -> True], 
+      Cell[
+       StyleData["Output"], ShowCellBracket -> True], 
+      Cell[
+       StyleData["Message"], ShowCellBracket -> True], 
+      Cell[
+       StyleData["Print"], ShowCellBracket -> True]}, Closed]], 
+   Cell[
+    CellGroupData[{
+      Cell["Styles for Formulas and Programming", "Section"], 
+      Cell[
+       StyleData["InlineFormula"]], 
+      Cell[
+       StyleData["DisplayFormula"], FontFamily -> "Times"], 
+      Cell[
+       StyleData["DisplayFormulaNumbered"], FontFamily -> "Times"], 
+      Cell[
+       StyleData["Program"], ShowCellBracket -> True]}, Closed]], 
+   Cell[
+    CellGroupData[{
+      Cell["Citation Styles", "Section"], 
+      Cell[
+       StyleData["Reference"]]}, Closed]]}, Visible -> False, FrontEndVersion -> 
+  "11.1 for Mac OS X x86 (32-bit, 64-bit Kernel) (April 27, 2017)", 
+  StyleDefinitions -> "PrivateStylesheetFormatting.nb"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 647, 9, 158, "Title", "ExpressionUUID" -> \
+"5dd42a29-b108-42b8-a983-272c56fbe4ae"],
+Cell[1229, 33, 485, 9, 37, "Text", "ExpressionUUID" -> \
+"4420f9b9-89aa-40b0-814f-f6521d0140e1"],
+Cell[1717, 44, 434, 6, 37, "Text", "ExpressionUUID" -> \
+"7f90ee8d-a9a3-4b2f-af60-fc324654d6b6"],
+Cell[CellGroupData[{
+Cell[2176, 54, 209, 4, 74, "Section", "ExpressionUUID" -> \
+"e4b39142-0dad-41ef-960b-169deebefa25"],
+Cell[2388, 60, 1400, 22, 83, "Text", "ExpressionUUID" -> \
+"3a836114-ccb6-4a37-8573-a3ad145ef385"],
+Cell[3791, 84, 588, 10, 60, "Text", "ExpressionUUID" -> \
+"d7aca567-d0f7-43ff-ae55-1a59104f21e3"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4416, 99, 302, 5, 74, "Section", "ExpressionUUID" -> \
+"2fb3e62c-d7df-472c-ac97-71f4b3c93d50"],
+Cell[CellGroupData[{
+Cell[4743, 108, 170, 3, 40, "Subsubsection", "ExpressionUUID" -> \
+"69b320f1-da44-4bb5-92df-99e9bbb36937"],
+Cell[4916, 113, 1452, 36, 147, "Text", "ExpressionUUID" -> \
+"c073ea3d-47ac-43c1-a121-90d6338a6f3a"],
+Cell[CellGroupData[{
+Cell[6393, 153, 771, 24, 40, "Input", "ExpressionUUID" -> \
+"8917ad41-794f-4962-9c45-5ef3dda6c185"],
+Cell[7167, 179, 327, 10, 40, "Output", "ExpressionUUID" -> \
+"16bab6f9-dd4f-4a4d-9d7f-eb6b793439da"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7555, 196, 356, 6, 74, "Section", "ExpressionUUID" -> \
+"b3b34a52-c2c9-4bd0-bf72-c573ccc37e37"],
+Cell[7914, 204, 792, 15, 128, "Text", "ExpressionUUID" -> \
+"85d833ea-34ff-4fd0-b2c4-a12502dddfc5"],
+Cell[CellGroupData[{
+Cell[8731, 223, 274, 4, 40, "Subsubsection", "ExpressionUUID" -> \
+"b72db7fd-eea8-464a-a8e9-b958a18bd4b1"],
+Cell[9008, 229, 2466, 55, 201, "Text", "ExpressionUUID" -> \
+"fa5e4783-91a5-4045-93d8-bf0b0dfbc677"],
+Cell[11477, 286, 399, 8, 61, "Text", "ExpressionUUID" -> \
+"5178f887-24ee-4d85-beeb-d622cac7afd3"],
+Cell[11879, 296, 1125, 27, 130, "Text", "ExpressionUUID" -> \
+"1c5442fc-d478-4021-b74b-5b5b6ee75795"],
+Cell[13007, 325, 22095, 784, 233, 18438, 723, "GraphicsData", "PostScript", \
+"NumberedFigure", "ExpressionUUID" -> "ff0ae369-c225-491e-9dc8-4ba9de92cf12"],
+Cell[35105, 1111, 215, 4, 37, "Text", "ExpressionUUID" -> \
+"d37d68f1-d6e9-4a65-8d41-3e8e6bf91621"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[35357, 1120, 162, 3, 40, "Subsubsection", "ExpressionUUID" -> \
+"045c51a1-b154-47e7-98fb-397a4441ab97"],
+Cell[35522, 1125, 1552, 31, 130, "Text", "ExpressionUUID" -> \
+"62ada6f1-500f-4441-8637-402b60c24b3e"],
+Cell[37077, 1158, 456, 14, 37, "Text", "ExpressionUUID" -> \
+"8d7240a1-15f9-46e0-b144-e227af853222"],
+Cell[37536, 1174, 1639, 46, 62, "Text", "ExpressionUUID" -> \
+"4373f09c-5fdf-4ef0-9483-74f2a7981fbe"],
+Cell[39178, 1222, 483, 11, 106, "Text", "ExpressionUUID" -> \
+"b0f73050-6aa9-4242-9cdc-fdb88ebd1c63"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

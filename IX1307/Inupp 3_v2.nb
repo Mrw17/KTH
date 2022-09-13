@@ -1,0 +1,795 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     35209,        787]
+NotebookOptionsPosition[     32857,        745]
+NotebookOutlinePosition[     33248,        761]
+CellTagsIndexPosition[     33205,        758]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ StyleBox["Inl\[ADoubleDot]mningsuppgift 3\nJerry Cheung & Daniel Westerlund\n\
+\n\nTrafikfl\[ODoubleDot]de\n", "Title"],
+ StyleBox["Problem:\n", "Subchapter"],
+ "Den h\[ADoubleDot]r uppgiften g\[ARing]r ut p\[ARing] och visa hur man kan \
+anv\[ADoubleDot]nda linj\[ADoubleDot]ra ekvationssystem f\[ODoubleDot]r att \
+studera trafikfl\[ODoubleDot]det genom ett trafiksystem. Trafiksystemet best\
+\[ARing]r av gator och korsningar d\[ADoubleDot]r gatorna m\[ODoubleDot]ts. \
+Varje gata har ett visst fl\[ODoubleDot]de, som m\[ADoubleDot]ts i fordon per \
+tidenhet. Vi skall ber\[ADoubleDot]kna trafikfl\[ODoubleDot]det \
+f\[ODoubleDot]r alla gatorna i trafiksystemet, givet fl\[ODoubleDot]det in \
+till trafiksystemet.  Vi g\[ODoubleDot]r ett  viktigt antagande: ",
+ StyleBox["Trafikfl\[ODoubleDot]det bevaras i varje korsning. ",
+  FontSlant->"Italic"],
+ StyleBox["Det betyder att ett fordon som n\[ARing]r en korsning m\[ARing]ste \
+forts\[ADoubleDot]tta genom trafiksystemet. Till exempel om \
+fl\[ODoubleDot]det in till en fyrv\[ADoubleDot]gs korsning \[ADoubleDot]r ",
+  FontVariations->{"CompatibilityType"->0}],
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["x", "1"], TraditionalForm]],ExpressionUUID->
+  "7f3df0bc-e387-4937-a572-da941bb2ac2b"],
+ " fordon/tidsenhet respektive 30 fordon/tidsenhet och fl\[ODoubleDot]det ut \
+fr\[ARing]n korsningen \[ADoubleDot]r ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["x", "2"], TraditionalForm]],ExpressionUUID->
+  "0dffe219-e6c1-4fd9-ba5f-f12ee20a94d8"],
+ " fordon/tidsenhet respektive 50 fordon/tidsenhet, s\[ARing] \
+g\[ADoubleDot]ller det att ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubscriptBox["x", "1"], "+", "30"}], "=", 
+    RowBox[{
+     SubscriptBox["x", "2"], "+", "50"}]}], TraditionalForm]],ExpressionUUID->
+  "3407d522-dd5c-4e1b-872c-434842da00c8"],
+ " eller ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubscriptBox["x", "1"], "-", 
+     SubscriptBox["x", "2"]}], "=", "20"}], TraditionalForm]],ExpressionUUID->
+  "70830cbd-8462-4c5e-a3da-fa0b23eef85d"],
+ ". Varje korsning ger allts\[ARing] en linj\[ADoubleDot]rekvation i ok\
+\[ADoubleDot]nda fl\[ODoubleDot]den ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["x", "n"], TraditionalForm]],ExpressionUUID->
+  "a0dd20c2-fd63-4b32-86fa-d477ca81ae8d"],
+ ". Om man l\[ODoubleDot]ser ekvationssystemet s\[ARing] kan man best\
+\[ADoubleDot]mma fl\[ODoubleDot]det genom trafiksystemet.\n",
+ StyleBox["\n\[CapitalADoubleDot]r v\[ARing]rt antagande om att fl\
+\[ODoubleDot]det bevaras giltigt? N\[ADoubleDot]r kan antagandet vara \
+felaktigt?\n", "Subchapter"],
+ StyleBox["Antagade  kan antas bevara giltigt s\[ARing] l\[ADoubleDot]nge som \
+inga bilar stannar i korsningar och skapar trafikstockning. Vi antar att \
+trafiket fl\[ODoubleDot]der endast i pilarnas riktning, att  pilarna \
+symboliserar att det \[ADoubleDot]r enkelriktad. ", "Text"],
+ "\n   \n",
+ StyleBox["Vilka andra f\[ODoubleDot]renklingar har vi antagit?", 
+  "Subchapter"],
+ "\n",
+ StyleBox["Vi har antagit att det \[ADoubleDot]r samma hastighet p\[ARing] \
+alla v\[ADoubleDot]ger, i teorin skulle alla bilar kunna v\[ADoubleDot]lja \
+antingen x1 eller x2, och att det blir trafikstokning n\[ARing]gonstans\n", 
+  "Text"],
+ "\n",
+ StyleBox["Ekvationssystem f\[ODoubleDot]r trafikfl\[ODoubleDot]det  ", 
+  "Subchapter"],
+ "\n",
+ StyleBox["x1 + x2 = 200\nx1 = 40+ x3 +x4\nx4 + x5 = 60  \nx2 + x3 = 100 + x5 \
+", "Text"],
+ "\n\n",
+ StyleBox["Best\[ADoubleDot]m trafikfl\[ODoubleDot]det f\[ODoubleDot]r v\
+\[ADoubleDot]gsystemet.", "Subchapter"],
+ "\n",
+ StyleBox["Trafikfl\[ODoubleDot]det in i f\[ODoubleDot]rsta korsningen \
+\[ADoubleDot]r 200, detta g\[ODoubleDot]r att 200bilar kommer att \[ARing]ka \
+antingen till x1 eller x2 d\[ADoubleDot]r minst 40 bilar \[ARing]ker till x1. \
+Fr\[ARing]n x1 \[ADoubleDot]r det 40 bilar \[ADoubleDot]r i \
+utfl\[ODoubleDot]det och resterande bilar fr\[ARing]n x1 \[ARing]ker antingen \
+till x3 eller x4. De bilar som \[ARing]ker till x4 blir tillsammans med x5 \
+utfl\[ODoubleDot]det 60. De bilar som \[ARing]ker till x3 \[ARing]ker \
+antingen till utfl\[ODoubleDot]det 100 eller till x5. De bilar som \
+\[ARing]ker till x5 bildar tillsammans med x4 utfl\[ODoubleDot]det 60. ", 
+  "Text"],
+ "\n\n",
+ StyleBox["Hur \[ADoubleDot]ndras trafikfl\[ODoubleDot]det om  ", 
+  "Subchapter"],
+ StyleBox[Cell[BoxData[
+  FormBox[
+   SubscriptBox["x", "4"], TraditionalForm]], "Subchapter",ExpressionUUID->
+  "4fa7252c-9ec1-4bcc-87b5-89d2ce24e69c"], "Subchapter"],
+ StyleBox[" \[ADoubleDot]r noll ?\n", "Subchapter"],
+ StyleBox["Om x4 \[ADoubleDot]r noll, kommer det tvinga \
+trafikfl\[ODoubleDot]det att minst 40 bilar tar x1, och d\[ADoubleDot]refter \
+blir utfl\[ODoubleDot]de. Resterande bilar m\[ARing]ste \[ARing]ka via \
+korsningen x2,x3,x5. Detta g\[ODoubleDot]r att den korsningen blir \
+h\[ARing]rt trafikerad och bilarna f\[ARing]r inget val. \n\n\n", "Text"],
+ StyleBox["Antag att trafiken m\[ARing]ste flyta i de riktningar som anges i \
+figuren. Om ", "Subchapter"],
+ StyleBox[Cell[BoxData[
+  FormBox[
+   SubscriptBox["x", "4"], TraditionalForm]], "Subchapter",ExpressionUUID->
+  "85fabed0-24f1-4b73-8c18-c975f20da8fd"], "Subchapter"],
+ StyleBox[" \[ADoubleDot]r noll vad \[ADoubleDot]r d\[ARing] minsta v\
+\[ADoubleDot]rdet p\[ARing] ", "Subchapter"],
+ StyleBox[Cell[BoxData[
+  FormBox[
+   SubscriptBox["x", "1"], TraditionalForm]], "Subchapter",ExpressionUUID->
+  "0464c932-caa4-4096-9a95-7c267eec2f05"], "Subchapter"],
+ StyleBox["?\n", "Subchapter"],
+ StyleBox["x1 m\[ARing]ste vara minst 40, f\[ODoubleDot]r annars kan inte \
+utfl\[ODoubleDot]det vara 40. ", "Text"]
+}], "Text",
+ CellChangeTimes->{{3.717390510566615*^9, 3.7173905270966153`*^9}, {
+   3.717390641770615*^9, 3.7173906541216154`*^9}, {3.7173907247016153`*^9, 
+   3.717390890252809*^9}, {3.717391116820759*^9, 3.7173911347189827`*^9}, {
+   3.717391185137024*^9, 3.717391325295038*^9}, {3.7173926135500507`*^9, 
+   3.717392697977493*^9}, 3.7173930012268143`*^9, 3.717393126333324*^9, {
+   3.7173931685995502`*^9, 3.7173932164293327`*^9}, {3.717393258227512*^9, 
+   3.7173932613468237`*^9}, {3.7173935451071973`*^9, 
+   3.7173936153592215`*^9}, {3.7173936649931846`*^9, 
+   3.7173936784735327`*^9}, {3.7173938020718913`*^9, 
+   3.7173938442251062`*^9}, {3.7182761803353195`*^9, 3.718276203295209*^9}, {
+   3.718276255927338*^9, 3.718276296719999*^9}, {3.718278366973414*^9, 
+   3.718278377365924*^9}},ExpressionUUID->"80f95099-d476-4b4b-8a0a-\
+dc8beb68234e"],
+
+Cell[TextData[{
+ StyleBox["Kaniner\n", "Title"],
+ StyleBox["Problem:", "Subchapter"],
+ StyleBox["\n", "Title"],
+ "Leonardo av Pisa, \[ADoubleDot]ven k\[ADoubleDot]nd som Fibonacci (circa \
+1170-1250) skapade en av de \[ADoubleDot]ldsta matematiska modellerna av f\
+\[ODoubleDot]r\[ODoubleDot]kning. Han modellerade \
+f\[ODoubleDot]r\[ODoubleDot]kning av kaniner. Genom att modellera kaninpar \
+kunde han undvika att ta h\[ADoubleDot]nsyn till individuella kaniner av \
+olika k\[ODoubleDot]n. Modellen beskriver f\[ODoubleDot]r\[ODoubleDot]kningen \
+av kaniner fr\[ARing]n m\[ARing]nad ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"n", "=", "1"}], TraditionalForm]],ExpressionUUID->
+  "2c06a591-5932-4df4-aba0-d259aed2e602"],
+ " d\[ADoubleDot]r ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["p", "n"], TraditionalForm]],ExpressionUUID->
+  "c59bacc4-afd0-436f-8d3e-7596ae8a15f9"],
+ " \[ADoubleDot]r antal kaniner vid m\[ARing]nad ",
+ Cell[BoxData[
+  FormBox["n", TraditionalForm]],ExpressionUUID->
+  "e1c81382-d52b-4bf2-92eb-088317c05ba9"],
+ ". N\[ADoubleDot]r en kanin f\[ODoubleDot]ds, s\[ARing] \[ADoubleDot]r den \
+en unge under en m\[ARing]nad och sedan f\[ODoubleDot]r\[ODoubleDot]kar sig \
+kaninparen varje m\[ARing]nad. Antal kaniner kan d\[ARing] beskrivs av en \
+differensekvation:\n",
+ StyleBox["\[LineSeparator]", "Title"],
+ StyleBox["Ber\[ADoubleDot]kna talf\[ODoubleDot]ljden och rita en graf \
+\[ODoubleDot]ver den.", "Subchapter"]
+}], "Text",
+ CellGroupingRules->{"GroupTogetherGrouping", 10000.},
+ CellChangeTimes->{{3.717393758366521*^9, 3.7173937627749615`*^9}, {
+   3.717393855503234*^9, 3.717393859828666*^9}, {3.717395749053364*^9, 
+   3.717395751197364*^9}, 3.7173962797998595`*^9, 3.7173967385457296`*^9, {
+   3.718278830256678*^9, 
+   3.71827886025224*^9}},ExpressionUUID->"a712ee8c-7f37-472a-a709-\
+40abc48f4839"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"p1", " ", "=", " ", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"Fibonacci", "[", "n", "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"n", ",", "10"}], "}"}]}], "]"}]}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"ListPlot", "[", "p1", "]"}], "\[IndentingNewLine]", 
+   RowBox[{"p2", " ", "=", " ", 
+    RowBox[{"p1", "[", 
+     RowBox[{"[", 
+      RowBox[{"3", ";;", "10"}], "]"}], "]"}]}], "\[IndentingNewLine]", 
+   RowBox[{"ListPlot", "[", 
+    RowBox[{"p2", ",", " ", 
+     RowBox[{"AxesLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"M\[ARing]nad", " ", "[", 
+         RowBox[{"Exclusive", " ", "startm\[ARing]nader"}], "]"}], ",", 
+        "Kaniner"}], "}"}]}]}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{"ListLogPlot", "[", 
+    RowBox[{"p2", ",", " ", 
+     RowBox[{"AxesLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"M\[ARing]nad", " ", "[", 
+         RowBox[{"Exclusive", " ", "startm\[ARing]nader"}], "]"}], ",", 
+        "Kaniner"}], "}"}]}]}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"a1", ",", "b1"}], "}"}], "=", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"a", ",", "b"}], "}"}], "/.", 
+     RowBox[{"FindFit", "[", 
+      RowBox[{"p2", ",", 
+       RowBox[{"{", 
+        RowBox[{"a", "\[Times]", 
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{"b", "*", "k"}]]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"a", ",", "b"}], "}"}], ",", "k"}], "]"}]}]}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"p3", " ", "=", " ", 
+    RowBox[{"Plot", "[", 
+     RowBox[{
+      RowBox[{"a1", "*", 
+       SuperscriptBox["\[ExponentialE]", 
+        RowBox[{"b1", "*", "k"}]]}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"k", ",", "1", ",", "8"}], "}"}]}], "]"}]}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"p4", " ", "=", " ", 
+    RowBox[{"Range", "[", "8", "]"}]}], "\[IndentingNewLine]", 
+   RowBox[{"p5", " ", "=", " ", 
+    RowBox[{"Transpose", "[", 
+     RowBox[{"{", 
+      RowBox[{"p4", ",", "p2"}], "}"}], "]"}]}], "\[IndentingNewLine]", 
+   RowBox[{"ListPlot", "[", 
+    RowBox[{"p5", ",", " ", 
+     RowBox[{"AxesLabel", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"M\[ARing]nad", "[", 
+         RowBox[{"Exclusive", " ", "startm\[ARing]nader"}], "]"}], ",", 
+        "Kaniner"}], "}"}]}]}], "]"}], "\[IndentingNewLine]"}]}]], "Input",
+ CellGroupingRules->{"GroupTogetherGrouping", 10001.},
+ CellChangeTimes->{{3.7173957535763636`*^9, 3.717395783572364*^9}, {
+   3.717395841763364*^9, 3.7173959507553635`*^9}, {3.717395990601364*^9, 
+   3.717395993665364*^9}, {3.717396024478364*^9, 3.717396037037364*^9}, {
+   3.717396108084364*^9, 3.7173961144093637`*^9}, {3.7173968452644005`*^9, 
+   3.717396919395813*^9}, {3.7173969919600687`*^9, 3.717397136317503*^9}, {
+   3.717397166682539*^9, 3.71739721749562*^9}, 3.717397381841053*^9, {
+   3.7173974543453026`*^9, 3.7173974589127593`*^9}, {3.7173976069295597`*^9, 
+   3.7173976161554823`*^9}, {3.7173977594360056`*^9, 3.717397783490411*^9}, {
+   3.7173978523832994`*^9, 3.717397925208581*^9}, {3.7173979754986095`*^9, 
+   3.717397988762936*^9}, {3.71739803370243*^9, 3.717398040501109*^9}, {
+   3.7173981118422427`*^9, 3.7173981266727257`*^9}, {3.7173982603930964`*^9, 
+   3.7173982870377607`*^9}, {3.717398602633317*^9, 3.7173986058536386`*^9}, {
+   3.7173986364707003`*^9, 3.7173987697326236`*^9}, {3.7173988947311225`*^9, 
+   3.7173989357562246`*^9}, {3.7173994700075636`*^9, 
+   3.7173995147375636`*^9}, {3.718230467098051*^9, 3.718230472811942*^9}, 
+   3.7182305077540855`*^9, {3.7182305444480295`*^9, 3.718230590809823*^9}, {
+   3.718230712425398*^9, 3.718230762435599*^9}, {3.718230859800528*^9, 
+   3.718230929718795*^9}, {3.718230999781362*^9, 3.7182310346194954`*^9}, {
+   3.718231168032696*^9, 3.7182312220889254`*^9}, {3.718231254602372*^9, 
+   3.718231277655363*^9}, {3.718231389431135*^9, 3.7182313983958836`*^9}, {
+   3.718231430756241*^9, 3.718231466851041*^9}, {3.7182315641243215`*^9, 
+   3.7182315701926184`*^9}, {3.7182316663525176`*^9, 
+   3.7182317648793077`*^9}, {3.7182317953138824`*^9, 
+   3.7182319131261888`*^9}, {3.7182319849707623`*^9, 
+   3.7182320246768217`*^9}, {3.718232105199273*^9, 3.718232126567773*^9}, {
+   3.71823219320389*^9, 3.7182321936929426`*^9}, {3.7182765144513135`*^9, 
+   3.7182765521186743`*^9}, {3.7182770146210556`*^9, 
+   3.7182770317727995`*^9}, {3.718277096013193*^9, 3.718277097056944*^9}, {
+   3.7182771776911244`*^9, 3.7182772673098593`*^9}, {3.7182773213786173`*^9, 
+   3.7182773454490557`*^9}, 3.7182773764898806`*^9, {3.718277920820434*^9, 
+   3.7182779296967382`*^9}},ExpressionUUID->"3800c14c-8848-414c-a5fc-\
+f8f0907bd5f6"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "1", ",", "1", ",", "2", ",", "3", ",", "5", ",", "8", ",", "13", ",", "21",
+    ",", "34", ",", "55"}], "}"}]], "Output",
+ CellGroupingRules->{"GroupTogetherGrouping", 10001.},
+ CellChangeTimes->{
+  3.7182771098330145`*^9, 3.7182772203345585`*^9, 3.7182772696573815`*^9, {
+   3.7182773259795046`*^9, 3.7182773482463164`*^9}, 3.718277395648735*^9, 
+   3.7182779296977053`*^9, 3.718278342205364*^9, 3.7182783858715477`*^9, 
+   3.7182788678180265`*^9},ExpressionUUID->"6e7dc958-cdd1-4801-81b1-\
+53cad4cd3443"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{}, 
+    {RGBColor[0.368417, 0.506779, 0.709798], PointSize[0.012833333333333334`],
+      AbsoluteThickness[1.6], 
+     PointBox[{{1., 1.}, {2., 1.}, {3., 2.}, {4., 3.}, {5., 5.}, {6., 8.}, {
+      7., 13.}, {8., 21.}, {9., 34.}, {10., 55.}}]}, {}}, {}, {}, {}, {}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{0., 0},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImagePadding->All,
+  Method->{"CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0., 10.}, {0, 55.}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellGroupingRules->{"GroupTogetherGrouping", 10001.},
+ CellChangeTimes->{
+  3.7182771098330145`*^9, 3.7182772203345585`*^9, 3.7182772696573815`*^9, {
+   3.7182773259795046`*^9, 3.7182773482463164`*^9}, 3.718277395648735*^9, 
+   3.7182779296977053`*^9, 3.718278342205364*^9, 3.7182783858715477`*^9, 
+   3.71827886796596*^9},ExpressionUUID->"3b4f60c9-09a4-45eb-953e-\
+40f4f82f7f60"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "2", ",", "3", ",", "5", ",", "8", ",", "13", ",", "21", ",", "34", ",", 
+   "55"}], "}"}]], "Output",
+ CellGroupingRules->{"GroupTogetherGrouping", 10001.},
+ CellChangeTimes->{
+  3.7182771098330145`*^9, 3.7182772203345585`*^9, 3.7182772696573815`*^9, {
+   3.7182773259795046`*^9, 3.7182773482463164`*^9}, 3.718277395648735*^9, 
+   3.7182779296977053`*^9, 3.718278342205364*^9, 3.7182783858715477`*^9, 
+   3.7182788679759502`*^9},ExpressionUUID->"5265da03-c3d9-49d5-a204-\
+e8dabeb857d3"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{}, 
+    {RGBColor[0.368417, 0.506779, 0.709798], PointSize[0.012833333333333334`],
+      AbsoluteThickness[1.6], 
+     PointBox[{{1., 2.}, {2., 3.}, {3., 5.}, {4., 8.}, {5., 13.}, {6., 21.}, {
+      7., 34.}, {8., 55.}}]}, {}}, {}, {}, {}, {}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{
+    FormBox[
+     RowBox[{"M\[ARing]nad", "(", 
+       RowBox[{"Exclusive", " ", "startm\[ARing]nader"}], ")"}], 
+     TraditionalForm], 
+    FormBox["Kaniner", TraditionalForm]},
+  AxesOrigin->{0., 0},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImagePadding->All,
+  Method->{"CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0., 8.}, {0, 55.}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellGroupingRules->{"GroupTogetherGrouping", 10001.},
+ CellChangeTimes->{
+  3.7182771098330145`*^9, 3.7182772203345585`*^9, 3.7182772696573815`*^9, {
+   3.7182773259795046`*^9, 3.7182773482463164`*^9}, 3.718277395648735*^9, 
+   3.7182779296977053`*^9, 3.718278342205364*^9, 3.7182783858715477`*^9, 
+   3.718278868111307*^9},ExpressionUUID->"00c93abb-43c0-4247-978a-\
+88eddfb279a2"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{}, 
+    {RGBColor[0.368417, 0.506779, 0.709798], PointSize[0.012833333333333334`],
+      AbsoluteThickness[1.6], 
+     PointBox[{{1., 0.6931471805599453}, {2., 1.0986122886681098`}, {3., 
+      1.6094379124341003`}, {4., 2.0794415416798357`}, {5., 
+      2.5649493574615367`}, {6., 3.044522437723423}, {7., 
+      3.5263605246161616`}, {8., 4.007333185232471}}]}, {}}, {}, {}, {}, {}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{
+    FormBox[
+     RowBox[{"M\[ARing]nad", "(", 
+       RowBox[{"Exclusive", " ", "startm\[ARing]nader"}], ")"}], 
+     TraditionalForm], 
+    FormBox["Kaniner", TraditionalForm]},
+  AxesOrigin->{0., 0.4526014221562943},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{
+     Charting`ScaledTicks[{Log, Exp}], 
+     Charting`ScaledFrameTicks[{Log, Exp}]}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImagePadding->All,
+  Method->{"CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Exp[#]& )[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Exp[#]& )[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0., 8}, {0.509025735855916, 4.007333185232471}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->FrontEndValueCache[{Automatic, 
+     Charting`ScaledTicks[{Log, Exp}]}, {Automatic, {{0.6931471805599453, 
+       FormBox["2", TraditionalForm], {0.01, 0.}, {
+        AbsoluteThickness[0.1]}}, {1.6094379124341003`, 
+       FormBox["5", TraditionalForm], {0.01, 0.}, {
+        AbsoluteThickness[0.1]}}, {2.302585092994046, 
+       FormBox["10", TraditionalForm], {0.01, 0.}, {
+        AbsoluteThickness[0.1]}}, {2.995732273553991, 
+       FormBox["20", TraditionalForm], {0.01, 0.}, {
+        AbsoluteThickness[0.1]}}, {3.912023005428146, 
+       FormBox["50", TraditionalForm], {0.01, 0.}, {
+        AbsoluteThickness[0.1]}}, {0., 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+        AbsoluteThickness[0.1]}}, {0.4054651081081644, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+        AbsoluteThickness[0.1]}}, {1.0986122886681098`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+        AbsoluteThickness[0.1]}}, {1.3862943611198906`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+        AbsoluteThickness[0.1]}}, {1.791759469228055, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+        AbsoluteThickness[0.1]}}, {1.9459101490553132`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+        AbsoluteThickness[0.1]}}, {2.0794415416798357`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+        AbsoluteThickness[0.1]}}, {2.1972245773362196`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+        AbsoluteThickness[0.1]}}, {2.70805020110221, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+        AbsoluteThickness[0.1]}}, {3.4011973816621555`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+        AbsoluteThickness[0.1]}}, {3.6888794541139363`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+        AbsoluteThickness[0.1]}}, {4.0943445622221, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+        AbsoluteThickness[0.1]}}, {4.248495242049359, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+        AbsoluteThickness[0.1]}}, {4.382026634673881, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+        AbsoluteThickness[0.1]}}, {4.499809670330265, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+        AbsoluteThickness[0.1]}}, {4.605170185988092, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}, {
+        AbsoluteThickness[0.1]}}}}]]], "Output",
+ CellGroupingRules->{"GroupTogetherGrouping", 10001.},
+ CellChangeTimes->{
+  3.7182771098330145`*^9, 3.7182772203345585`*^9, 3.7182772696573815`*^9, {
+   3.7182773259795046`*^9, 3.7182773482463164`*^9}, 3.718277395648735*^9, 
+   3.7182779296977053`*^9, 3.718278342205364*^9, 3.7182783858715477`*^9, 
+   3.718278868335403*^9},ExpressionUUID->"b551adf0-112f-40f1-a90a-\
+4087ff2414fd"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"1.1722780157755694`", ",", "0.48104336223987215`"}], 
+  "}"}]], "Output",
+ CellGroupingRules->{"GroupTogetherGrouping", 10001.},
+ CellChangeTimes->{
+  3.7182771098330145`*^9, 3.7182772203345585`*^9, 3.7182772696573815`*^9, {
+   3.7182773259795046`*^9, 3.7182773482463164`*^9}, 3.718277395648735*^9, 
+   3.7182779296977053`*^9, 3.718278342205364*^9, 3.7182783858715477`*^9, 
+   3.7182788683971024`*^9},ExpressionUUID->"c6a91f7d-79a8-4002-b5a2-\
+ccd3f16af4f2"],
+
+Cell[BoxData[
+ GraphicsBox[{{{}, {}, 
+    TagBox[
+     {RGBColor[0.368417, 0.506779, 0.709798], AbsoluteThickness[1.6], Opacity[
+      1.], LineBox[CompressedData["
+1:eJwVy3sw1AkAB/BlPSIrq/Xalh+LrNSKtNcmfl/WKVZuqGQTenjkeqwaJ1Qe
+qRPjirNKl6yEcDcKQw/uCg0qdUJHRztx0gO1jrRh17k/vvOd78zna7VPHBip
+TqFQti7m/xbTRSspFDkp63LSndipIk8ubQ54skROznLKnk6Fq8gsTftTF+ly
+suRK0a35aBVZ/lXRs9paTibT9vcxElSkbKggTeQtJ+usPt8OK1CR/rX9g7XZ
+ctJoW49A9FJFcrcF50WaTZJF0Eif2L1ATkh2Up44/0sGP7+ZJlpPQZbwYPm4
+ZJpsyeXsyY9RwyPxpkLpsxmycoKbpl2kjmTBu3pbpYLMixUmsYeoCPStvKIe
+MkcWx0U1xAZrouMPu+exOUpS+UK7s/hPLeyOauxe/3mBDE0u2BCWvgR1MsZ8
+lJ0aAuLN5W3+utBprmqYI9VBtDvyJWZ6+LRJ2OcaS0WIx7hjIlcf5eLHUq9s
+DXypcpS3WhnAdJY321CiiYRTrKCRDXSYWVTf6+3SAlef5WB5yhBjCqp14wdt
+3MgQG7Cbl8PvcMSkH0sH962TOo7yjXCAXxuwZYsuBiT8MbM2Y+xokon09izF
+N24NlxiBpujuN+o4cUEP862erzUtmLD8zUFWV0VDoqKH9fH9CihN/XZdeqWP
+xsq5UBrFAk8+rnY5pmmA1vozd0vMLJG62nqZMtcAQc2Xq+XOVlA2WFwNXUXH
+aHdealUiG8OFOikld+jIeuxZnvvAGmXcMXuWlyHuHz33+quxLRxp3RkHBwyh
+jAozrS9dCfbmCr70wHJQ7UKOeDhzMPg0vahCjQHe0HiYYsEecZSgztFLDJhT
+mTvujDrgh/Mm/jo2RuAKBPzmzjVwi5GdVmsywjs9VXspZS2OSCVLZT7G6LUW
+pEwznXAyzSP0U68x2DZjOvmezgi8NbX3r4Mm6HUxHpu/vA45G/PvXVOY4J/R
+xHTmpAsu0je1eeaaAlbfvipM4UHTq9u2gzBDdqZL9hH9DQhgh/uf/tUMzDV1
+Yxtv8RG5ddLeUMCEG5s3dDbfFUM9x0Q/djHRz4xm1ie5wfbGV9eumBXIzOuA
+UzUJ75XH3/pTWNgxqyHjUDzQRRkZrclmgR6ff26A4wk2J+jyBxtz/MSQpRxP
+E2Cw6rZUu84ctG1aB3h/eyHu5TKxyN0Cd7esdfcWeKNn++HJ1BcW2Pf9VV71
+6GZccbjXnr2PwAgxPd+b6YPB93ES9UgCUy1OERG5PmBVOO5NiCawQNuzZKbA
+B4U2ZbP7DxEg3NbrWlYsbvOcNa7xBFoiQ7QutPmgaFlU3vtMAiKpdvxLqi+K
+p+jh3jUEanOev7NJ9cXrmk6HpjoC9W8ublRm+MIyNkPh1EDg59ZhWd+FRT8+
+n2veSIDm98xKIvXFtTdvH04/JDAe7FHKue+Lkr7fV13vJ9B4rJLXovLFcH7C
+F9MBAgFnHlEfaAnB3r7u4flXBHaVneM+0BeipKsiNGmYQPKhGmm7hRDXH+Xl
+BIwTsNIP0phyF2Ikwz+0/SOBTDvjbupmIWy8dVa5TRLwjjSimnwnRGlLcitn
+hgDPvyzXK3zRp/JzihQEKlKK5WHRi56c3s2YI6A+fLP+hFiICGW1fZaSQLF7
+5tAvxxf/jTEzCwsE7kiG45pShPgPMqQdIA==
+       "]]},
+     Annotation[#, "Charting`Private`Tag$38665#1"]& ]}, {}, {}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{1, 0},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, 
+     Charting`ScaledFrameTicks[{Identity, Identity}]}, {Automatic, 
+     Charting`ScaledFrameTicks[{Identity, Identity}]}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImagePadding->All,
+  Method->{
+   "DefaultBoundaryStyle" -> Automatic, "DefaultMeshStyle" -> 
+    AbsolutePointSize[6], "ScalingFunctions" -> None, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& )}},
+  PlotRange->{{1, 8}, {0., 54.99793873847506}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.05], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellGroupingRules->{"GroupTogetherGrouping", 10001.},
+ CellChangeTimes->{
+  3.7182771098330145`*^9, 3.7182772203345585`*^9, 3.7182772696573815`*^9, {
+   3.7182773259795046`*^9, 3.7182773482463164`*^9}, 3.718277395648735*^9, 
+   3.7182779296977053`*^9, 3.718278342205364*^9, 3.7182783858715477`*^9, 
+   3.7182788685053596`*^9},ExpressionUUID->"26c36895-a7f7-4416-98eb-\
+c2cb6a7eb6ce"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "1", ",", "2", ",", "3", ",", "4", ",", "5", ",", "6", ",", "7", ",", "8"}],
+   "}"}]], "Output",
+ CellGroupingRules->{"GroupTogetherGrouping", 10001.},
+ CellChangeTimes->{
+  3.7182771098330145`*^9, 3.7182772203345585`*^9, 3.7182772696573815`*^9, {
+   3.7182773259795046`*^9, 3.7182773482463164`*^9}, 3.718277395648735*^9, 
+   3.7182779296977053`*^9, 3.718278342205364*^9, 3.7182783858715477`*^9, 
+   3.718278868522907*^9},ExpressionUUID->"02841a1d-389e-4c78-98c0-\
+c140076af87c"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"3", ",", "5"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"4", ",", "8"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"5", ",", "13"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"6", ",", "21"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"7", ",", "34"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"8", ",", "55"}], "}"}]}], "}"}]], "Output",
+ CellGroupingRules->{"GroupTogetherGrouping", 10001.},
+ CellChangeTimes->{
+  3.7182771098330145`*^9, 3.7182772203345585`*^9, 3.7182772696573815`*^9, {
+   3.7182773259795046`*^9, 3.7182773482463164`*^9}, 3.718277395648735*^9, 
+   3.7182779296977053`*^9, 3.718278342205364*^9, 3.7182783858715477`*^9, 
+   3.7182788685324335`*^9},ExpressionUUID->"649fc2c8-d43e-438e-b04d-\
+c71489946b3f"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{}, 
+    {RGBColor[0.368417, 0.506779, 0.709798], PointSize[0.012833333333333334`],
+      AbsoluteThickness[1.6], 
+     PointBox[{{1., 2.}, {2., 3.}, {3., 5.}, {4., 8.}, {5., 13.}, {6., 21.}, {
+      7., 34.}, {8., 55.}}]}, {}}, {}, {}, {}, {}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{
+    FormBox[
+     RowBox[{"M\[ARing]nad", "(", 
+       RowBox[{"Exclusive", " ", "startm\[ARing]nader"}], ")"}], 
+     TraditionalForm], 
+    FormBox["Kaniner", TraditionalForm]},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImagePadding->All,
+  Method->{"CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0, 8.}, {0, 55.}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellGroupingRules->{"GroupTogetherGrouping", 10001.},
+ CellChangeTimes->{
+  3.7182771098330145`*^9, 3.7182772203345585`*^9, 3.7182772696573815`*^9, {
+   3.7182773259795046`*^9, 3.7182773482463164`*^9}, 3.718277395648735*^9, 
+   3.7182779296977053`*^9, 3.718278342205364*^9, 3.7182783858715477`*^9, 
+   3.7182788686321926`*^9},ExpressionUUID->"07113055-51d3-4cbb-b036-\
+60d54c909426"],
+
+Cell[TextData[{
+ StyleBox["Unders\[ODoubleDot]k talf\[ODoubleDot]ljden och diskutera tillv\
+\[ADoubleDot]xtakten.\n", "Subchapter"],
+ "  Vi anser att de tv\[ARing] f\[ODoubleDot]rsta v\[ADoubleDot]rdena, p1 = 1 \
+och p2 = 2  inte borde visas p\[ARing] grafen eftersom det \[ADoubleDot]r \
+initialv\[ADoubleDot]rdena och det b\[ODoubleDot]rjar egentligen vid p3, som \
+\[ADoubleDot]r den f\[ODoubleDot]rsta \"riktiga\" m\[ARing]naden.  \n  Talf\
+\[ODoubleDot]ljden r\[ADoubleDot]knar inte med n\[ARing]gon snitt \
+\[ARing]lder f\[ODoubleDot]r kaninerna d\[ARing] de d\[ODoubleDot]r en \
+naturlig d\[ODoubleDot]d, och s\[ARing]ledes verkar den inte \
+r\[ADoubleDot]kna med ett bortfall av kaniner som har d\[ODoubleDot]tt. \n  \
+Vilket g\[ODoubleDot]r att den f\[ARing]r en h\[ODoubleDot]gre tillv\
+\[ADoubleDot]xt. Som man ser p\[ARing] grafen \[ADoubleDot]r det en \
+expotionell funktion, och den \[ODoubleDot]kar v\[ADoubleDot]ldigt kraftigt, \
+unders\[ODoubleDot]kar man talf\[ODoubleDot]ljden ser man att antalet kaniner \
+en \n  specifik m\[ARing]nad \[ADoubleDot]r summan av de tv\[ARing] f\
+\[ODoubleDot]rg\[ARing]ende m\[ARing]naderna.  \n\n",
+ StyleBox["Vilka begr\[ADoubleDot]nsningar har modellen:\n", "Subchapter"],
+ "Den r\[ADoubleDot]knar inte med bortfall utav kaniner, vilket \
+g\[ODoubleDot]r att om man kollar efter v\[ADoubleDot]ldigt l\[ARing]ng tid, \
+kommer de f\[ODoubleDot]rsta kaninera vara med i utr\[ADoubleDot]kningen som \
+kaniner som f\[ODoubleDot]der nya kaniner. \nDetta g\[ODoubleDot]r att \
+modellen endast \[ADoubleDot]r n\[ARing]golunda giltig tills att de \
+tv\[ARing] f\[ODoubleDot]rsta kaninera sluta producera nya kaniner.  \n\n",
+ StyleBox["Hur kan man f\[ODoubleDot]rb\[ADoubleDot]ttra modellen:\n", 
+  "Subchapter"],
+ "Genom att begr\[ADoubleDot]na modellen \[ODoubleDot]ver en kanin \
+reproducerings period under livet. \nR\[ADoubleDot]kna fram n\[ARing]got \
+snitt bortfall av kaniner \[ODoubleDot]ver tid.  ",
+ StyleBox["\n", "Subchapter"]
+}], "Text",
+ CellGroupingRules->{"GroupTogetherGrouping", 10001.},
+ CellChangeTimes->{{3.717396298533733*^9, 3.7173963033962193`*^9}, {
+   3.7173963565395327`*^9, 3.7173965608279595`*^9}, 3.7173967069175673`*^9, {
+   3.7173967425651317`*^9, 3.717396744291304*^9}, {3.718276053572281*^9, 
+   3.718276114823371*^9}, {3.718276670128995*^9, 3.718276784600482*^9}, {
+   3.718277900992052*^9, 3.7182779900603404`*^9}, {3.7182780362478456`*^9, 
+   3.718278055857856*^9}, {3.718278085948268*^9, 3.718278086763938*^9}, {
+   3.7182781218814597`*^9, 3.7182782530274963`*^9}, 
+   3.7182788887444744`*^9},ExpressionUUID->"720c3ef9-e548-4dd8-ab68-\
+c888d4425734"]
+}, Open  ]]
+},
+WindowSize->{1920, 997},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+PrintingPageRange->{Automatic, Automatic},
+FrontEndVersion->"11.2 for Microsoft Windows (64-bit) (September 10, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 6481, 130, 1063, "Text",ExpressionUUID->"80f95099-d476-4b4b-8a0a-dc8beb68234e"],
+Cell[7042, 152, 1831, 38, 253, "Text",ExpressionUUID->"a712ee8c-7f37-472a-a709-40abc48f4839",
+ CellGroupingRules->{"GroupTogetherGrouping", 10000.}],
+Cell[CellGroupData[{
+Cell[8898, 194, 4776, 101, 268, "Input",ExpressionUUID->"3800c14c-8848-414c-a5fc-f8f0907bd5f6",
+ CellGroupingRules->{"GroupTogetherGrouping", 10001.}],
+Cell[13677, 297, 549, 11, 32, "Output",ExpressionUUID->"6e7dc958-cdd1-4801-81b1-53cad4cd3443",
+ CellGroupingRules->{"GroupTogetherGrouping", 10001.}],
+Cell[14229, 310, 1603, 41, 247, "Output",ExpressionUUID->"3b4f60c9-09a4-45eb-953e-40f4f82f7f60",
+ CellGroupingRules->{"GroupTogetherGrouping", 10001.}],
+Cell[15835, 353, 529, 11, 32, "Output",ExpressionUUID->"5265da03-c3d9-49d5-a204-e8dabeb857d3",
+ CellGroupingRules->{"GroupTogetherGrouping", 10001.}],
+Cell[16367, 366, 1750, 46, 167, "Output",ExpressionUUID->"00c93abb-43c0-4247-978a-88eddfb279a2",
+ CellGroupingRules->{"GroupTogetherGrouping", 10001.}],
+Cell[18120, 414, 4928, 109, 169, "Output",ExpressionUUID->"b551adf0-112f-40f1-a90a-4087ff2414fd",
+ CellGroupingRules->{"GroupTogetherGrouping", 10001.}],
+Cell[23051, 525, 498, 10, 32, "Output",ExpressionUUID->"c6a91f7d-79a8-4002-b5a2-ccd3f16af4f2",
+ CellGroupingRules->{"GroupTogetherGrouping", 10001.}],
+Cell[23552, 537, 3457, 75, 240, "Output",ExpressionUUID->"26c36895-a7f7-4416-98eb-c2cb6a7eb6ce",
+ CellGroupingRules->{"GroupTogetherGrouping", 10001.}],
+Cell[27012, 614, 522, 11, 32, "Output",ExpressionUUID->"02841a1d-389e-4c78-98c0-c140076af87c",
+ CellGroupingRules->{"GroupTogetherGrouping", 10001.}],
+Cell[27537, 627, 914, 25, 32, "Output",ExpressionUUID->"649fc2c8-d43e-438e-b04d-c71489946b3f",
+ CellGroupingRules->{"GroupTogetherGrouping", 10001.}],
+Cell[28454, 654, 1750, 46, 167, "Output",ExpressionUUID->"07113055-51d3-4cbb-b036-60d54c909426",
+ CellGroupingRules->{"GroupTogetherGrouping", 10001.}],
+Cell[30207, 702, 2634, 40, 388, "Text",ExpressionUUID->"720c3ef9-e548-4dd8-ab68-c888d4425734",
+ CellGroupingRules->{"GroupTogetherGrouping", 10001.}]
+}, Open  ]]
+}
+]
+*)
+
